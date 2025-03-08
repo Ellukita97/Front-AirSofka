@@ -1,0 +1,12 @@
+@use "../../../../../../shared/src/infrastructure/ui/styles/variables.scss" as
+  variables;
+@use "../../../../../../shared/src/infrastructure/ui/styles/mixins.scss" as
+  mixins;
+
+.extra-option {
+  display: flex;
+  align-items: center;
+  @include mixins.text-secondary;
+  color: variables.$blue;
+  text-decoration: none;
+}

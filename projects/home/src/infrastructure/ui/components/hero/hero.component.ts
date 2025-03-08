@@ -1,44 +1,45 @@
 import { Component } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { SearchFormComponent } from '../../forms/search-form/search-form.component';
+import { ExtraOptionComponent } from '../extra-option/extra-option.component';
 
 @Component({
   selector: 'lib-hero',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    SearchFormComponent,
+    ExtraOptionComponent,
+  ],
   templateUrl: './hero.component.html',
-  styleUrl: './hero.component.scss',
+  styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent {
-  flightForm: FormGroup;
-
-  constructor(private fb: FormBuilder) {
-    this.flightForm = this.fb.group({
-      tripType: ['roundTrip', Validators.required],
-      passengers: [1, Validators.required],
-      useMiles: [false],
-      origin: ['', Validators.required],
-      destination: ['', Validators.required],
-      dates: ['', Validators.required],
-    });
-  }
-
-  onSubmit() {
-    if (this.flightForm.valid) {
-      console.log('Search flights with:', this.flightForm.value);
-    }
-  }
-
-  toggleTripType(type: string) {
-    this.flightForm.get('tripType')?.setValue(type);
-  }
-
-  toggleUseMiles(event: Event) {
-    const checkbox = event.target as HTMLInputElement;
-    this.flightForm.get('useMiles')?.setValue(checkbox.checked);
-  }
+  extraOptions = [
+    {
+      href: '#',
+      imgSrc: 'https://www.copaair.com/assets/BusinessSeat.svg',
+      imgAlt: 'BusinessSeat.svg',
+      text: 'Solicita un ascenso',
+    },
+    {
+      href: '#',
+      imgSrc: 'https://www.copaair.com/assets/TC_Icon_Circle.svg',
+      imgAlt: 'TC_Icon_Circle.svg',
+      text: 'Tarjeta de crédito',
+    },
+    {
+      href: '#',
+      imgSrc: 'https://www.copaair.com/assets/Insurance.svg',
+      imgAlt: 'Insurance.svg',
+      text: 'Seguros de viaje',
+    },
+    {
+      href: '#',
+      imgSrc: 'https://www.copaair.com/assets/Car.svg',
+      imgAlt: 'Car.svg',
+      text: 'Reservar auto',
+    },
+  ];
 }

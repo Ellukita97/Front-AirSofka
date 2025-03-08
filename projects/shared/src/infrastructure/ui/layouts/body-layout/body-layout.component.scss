@@ -9,7 +9,11 @@
   }
 
   &__main {
-    background-color: variables.$blue;
+    background: linear-gradient(
+      to bottom,
+      variables.$blue 195.55px,
+      variables.$white 40px
+    );
     padding: 80px;
     display: flex;
     flex-direction: column;
