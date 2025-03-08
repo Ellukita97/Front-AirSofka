@@ -1,0 +1,62 @@
+$black: #000000;
+$white: #ffffff;
+$gray: #757575;
+$green: #4caf50;
+$red: #f44336;
+$blue: #0032a0;
+
+// Colores adicionales
+$background-color: #f5f5f5;
+$icon-primary: #1e88e5;
+$icon-secondary: #757575;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+// -----------------------------
+// 2. TIPOGRAFÍA
+// -----------------------------
+// Fuentes
+$primary-font: "Jost", sans-serif;
+$secondary-font: "Montserrat", sans-serif;
+
+// Tamaños de fuente
+$font-size-title-main: 40px;
+$font-size-title-secondary: 24px;
+$font-size-paragraph: 16px;
+$font-size-text-secondary: 14px;
+$font-size-button: 16px;
+$font-size-label: 14px;
+$font-size-error: 12px;
+
+// Pesos de fuente
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// -----------------------------
+// 3. ESPACIADO
+// -----------------------------
+$spacing-xs: 8px;
+$spacing-sm: 10px;
+$spacing-md: 12px;
+$spacing-base: 16px;
+$spacing-lg: 24px;
+
+$border-radius: 5px;
+
+// -----------------------------
+// 4. TAMAÑOS DE ICONOS
+// -----------------------------
+$icon-size-small: 16px;
+$icon-size-medium: 20px;
+$icon-size-large: 24px;
+
+// -----------------------------
+// 5. ESTRUCTURA DE PÁGINA
+// -----------------------------
+$header-height: 100px;
+$header-shadow: 0px 2px 4px $shadow-color;
+
+@font-face {
+  font-family: "Jost";
+  src: url("https://fonts.google.com/specimen/Jost");
+}
