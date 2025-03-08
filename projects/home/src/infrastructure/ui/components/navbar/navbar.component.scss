@@ -7,10 +7,12 @@
     background-color: variables.$blue;
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 100dvw;
     padding-inline: 20px;
     font-family: variables.$primary-font;
     gap: 200px;
+    height: 100%;
 
     &-container {
       display: flex;
