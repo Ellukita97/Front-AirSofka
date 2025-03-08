@@ -21,7 +21,7 @@ export class TripOptionsComponent {
   numberOfAdults = 1;
   numberOfChildren = 0;
   numberOfInfants = 0;
-  showPassengerModal = true;
+  showPassengerModal = false;
 
   setAdults(adults: number) {
     this.numberOfAdults = adults;
