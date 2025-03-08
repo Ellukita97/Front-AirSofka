@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { PassengerModalComponent } from '../passenger-modal/passenger-modal.component';
 
 @Component({
   selector: 'app-trip-options',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, PassengerModalComponent],
   templateUrl: './trip-options.component.html',
   styleUrls: ['./trip-options.component.scss'],
 })
@@ -20,6 +21,7 @@ export class TripOptionsComponent {
   numberOfAdults = 1;
   numberOfChildren = 0;
   numberOfInfants = 0;
+  showPassengerModal = true;
 
   setAdults(adults: number) {
     this.numberOfAdults = adults;
@@ -41,7 +43,11 @@ export class TripOptionsComponent {
   }
 
   openPassengersDialog() {
-    console.log('Open passengers dialog');
+    this.showPassengerModal = true;
+  }
+
+  closePassengersDialog() {
+    this.showPassengerModal = false;
   }
 
   updatePassengers() {
@@ -50,5 +56,17 @@ export class TripOptionsComponent {
       children: this.numberOfChildren,
       infants: this.numberOfInfants,
     });
+  }
+
+  onPassengersSelected(passengers: {
+    adults: number;
+    children: number;
+    infants: number;
+  }) {
+    this.numberOfAdults = passengers.adults;
+    this.numberOfChildren = passengers.children;
+    this.numberOfInfants = passengers.infants;
+    this.updatePassengers();
+    this.closePassengersDialog();
   }
 }

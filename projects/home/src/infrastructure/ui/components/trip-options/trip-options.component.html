@@ -50,7 +50,7 @@
           <svg
             width="16"
             height="16"
-            fill="#0032a0 "
+            fill="#0032a0"
             xmlns="http://www.w3.org/2000/svg"
             focusable="false"
             aria-hidden="true"
@@ -193,5 +193,14 @@
         </svg>
       </button>
     </div>
+  </div>
+  <div *ngIf="showPassengerModal" class="passenger-modal">
+    <app-passenger-modal
+      [adults]="numberOfAdults"
+      [children]="numberOfChildren"
+      [infants]="numberOfInfants"
+      (passengersSelected)="onPassengersSelected($event)"
+      (closeModalEvent)="closePassengersDialog()"
+    ></app-passenger-modal>
   </div>
 </div>
