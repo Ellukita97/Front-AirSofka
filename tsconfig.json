@@ -4,6 +4,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "admin": [
+        "./dist/admin"
+      ],
       "booking": [
         "./dist/booking"
       ],

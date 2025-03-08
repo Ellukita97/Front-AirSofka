@@ -1,0 +1,25 @@
+@use './../../styles/reset.scss' as *;
+@use './../../styles/variables' as variables;
+.layout {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+
+    &__aside {
+        width: 18%;
+        background-color: variables.$primary-color;
+    }
+    &__content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    } 
+
+    // &__header {
+
+    // }
+
+    // &__body {
+
+    // }
+}

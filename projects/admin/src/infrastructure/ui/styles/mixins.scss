@@ -1,0 +1,6 @@
+@mixin flex-style ($flex-direction, $flex-wrap: nowrap, $gap: 0px) {
+    display: flex;
+    flex-direction: $flex-direction;
+    flex-wrap: $flex-wrap;
+    gap: $gap;
+  }
