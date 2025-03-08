@@ -1,0 +1,6 @@
+@use "../../.../../../../../../shared/src/infrastructure/ui//styles/variables.scss"
+  as variables;
+
+.new-destiny {
+  border-top: 1px solid variables.$blue;
+}

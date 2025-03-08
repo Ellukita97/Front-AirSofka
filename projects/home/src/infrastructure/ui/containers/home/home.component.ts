@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { HeroComponent } from '../../components/hero/hero.component';
+import { NewDestinyComponent } from '../../components/new-destiny/new-destiny.component';
 
 @Component({
   selector: 'lib-home',
-  imports: [HeroComponent],
+  imports: [HeroComponent, NewDestinyComponent],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
 })
 export class HomeComponent {}

@@ -5,6 +5,8 @@
 
 .flight-search {
   @include mixins.typography-base;
+  padding-bottom: 1.6rem;
+  padding: 80px;
 
   &__title {
     @include mixins.text-paragraph;
