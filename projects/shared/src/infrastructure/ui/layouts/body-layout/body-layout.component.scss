@@ -9,6 +9,10 @@
   }
 
   &__main {
-    background-color: variables.$white;
+    background-color: variables.$blue;
+    padding: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
