@@ -8,5 +8,5 @@ import { RecomendationCardModel } from '../../../../domain/model/recomendationCa
   styleUrl: './recomendation-card.component.scss',
 })
 export class RecomendationCardComponent {
-  @Input() recomendation!: RecomendationCardModel;
+  @Input() recomendation!: RecomendationCardModel | null;
 }

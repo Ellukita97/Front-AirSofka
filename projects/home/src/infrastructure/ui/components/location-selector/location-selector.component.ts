@@ -30,6 +30,11 @@ export class LocationSelectorComponent {
     const origin = this.formGroup.get('origin')?.value;
     const destination = this.formGroup.get('destination')?.value;
 
+    this.formGroup.patchValue({
+      origin: destination,
+      destination: origin,
+    });
+
     this.originChange.emit(destination);
     this.destinationChange.emit(origin);
   }

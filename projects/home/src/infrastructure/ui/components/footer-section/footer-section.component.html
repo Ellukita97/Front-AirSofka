@@ -3,7 +3,7 @@
   <menu class="footer-section__menu">
     <ng-container *ngFor="let item of section.links">
       <li class="footer-section__menu-item">
-        <a href="">{{ item.text }}</a>
+        <a [href]="item.link">{{ item.text }}</a>
       </li>
     </ng-container>
   </menu>
