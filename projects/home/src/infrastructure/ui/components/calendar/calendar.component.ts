@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-calendar',
   imports: [DatePipe, CommonModule],
@@ -64,12 +65,16 @@ export class CalendarComponent {
   }
 
   prevMonth() {
-    this.currentMonth.setMonth(this.currentMonth.getMonth() - 1);
+    this.currentMonth = new Date(
+      this.currentMonth.setMonth(this.currentMonth.getMonth() - 1)
+    );
     this.generateCalendar(this.currentMonth);
   }
 
   nextMonth() {
-    this.currentMonth.setMonth(this.currentMonth.getMonth() + 1);
+    this.currentMonth = new Date(
+      this.currentMonth.setMonth(this.currentMonth.getMonth() + 1)
+    );
     this.generateCalendar(this.currentMonth);
   }
 
