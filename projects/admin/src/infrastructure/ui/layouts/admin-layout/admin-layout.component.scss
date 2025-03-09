@@ -2,6 +2,7 @@
 @use './../../styles/variables' as variables;
 @use './../../styles/mixins' as mixins;
 .layout {
+    height: 100vh;
     @include mixins.flex-style(row, nowrap, 0px);
     &__aside {
         width: 18%;
@@ -20,13 +21,14 @@
         align-items: center;
         background-color: variables.$secondary-color;
         padding: 0 40px;
-        height: 18%;
+        height: 160px;
         & h1{
             font-size: 40px;
         }
     }
 
     &__body {
-        padding: 10px 40px;
+        padding: 0px 40px;
+        overflow: scroll;
     }
 }

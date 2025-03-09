@@ -11,19 +11,15 @@ details[open] .accordion__header--icon {
 
 .accordion {
     border-bottom: 1px solid #ccc;
-    padding: 10px 0px;
+    padding: 0;
     cursor: pointer;
     font-family: Arial, sans-serif;
-    width: 100%;
-
 
     &__header {
-        display: flex;
-        flex-direction: column;
+        @include mixins.flex-style(column, nowrap, 5px);
         align-items: center;
         justify-content: space-between;
-        gap: 5px;
-
+        padding: 20px 0;
     }
 
     &__icon {
@@ -142,9 +138,6 @@ details[open] .accordion__header--icon {
             font-weight: bold;
         }
     }
-
-
-
 
 }
 
