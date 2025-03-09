@@ -1,3 +1,6 @@
+@use '../../styles/variables' as variables;
+@use '../../styles/mixins' as mixins;
+
 .details {
     display: flex;
     justify-content: center;
@@ -5,27 +8,11 @@
     padding-top: 50px;
 
     &__capa {
-        background-color: #333333bd;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 1000;
+        @include mixins.modal-opacity;
     }
 
     &__card {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.434);
-        padding: 2rem;
-        width: 100%;
-        max-width: 700px;
-        height: max-content;
-        position: absolute;
-        top: 15%;
-        z-index: 1000;
-        cursor: default;
+        @include mixins.card-modal;
     }
 
     &__close {
@@ -40,8 +27,7 @@
         margin-bottom: 2rem;
 
         & h1 {
-            font-size: 1.5rem;
-            color: #333;
+            @include mixins.font-style(1.5rem, bold, variables.$font-titles);
             margin: 0;
         }
     }
@@ -53,17 +39,13 @@
     }
 
     &__column {
-        display: flex;
-        flex-direction: column;
+        @include mixins.flex-style(column, nowrap);
         width: 100%;
     }
 
     &__row {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
+        @include mixins.flex-style(row, wrap, 1rem);
         justify-content: space-between;
-        gap: 1rem;
     }
 
     &__group {
@@ -77,34 +59,30 @@
     }
 
     &__subtitle {
-        font-size: 0.875rem;
-        color: #666;
+        @include mixins.font-style(0.875rem, normal, variables.$font-opacity);
         margin: 0 0 0.5rem 0;
-        font-weight: normal;
         width: 100%;
     }
 
     &__text {
+        @include mixins.font-style(1rem, 600, variables.$font-titles);
         font-size: 1rem;
-        color: #333;
         margin: 0;
-        font-weight: 600;
     }
 
     &__status {
+        display: flex;
         padding: 1rem;
         background: #fff9e6;
         border-radius: 4px;
         width: 100%;
-        display: flex;
     }
 
     &__alert {
-        display: flex;
+        @include mixins.flex-style(row, nowrap, 0.5rem);
         align-items: center;
-        gap: 0.5rem;
         margin: 0;
-        color: #856404;
+        color: variables.$font-titles;
 
         &-icon {
             font-size: 1.25rem;
@@ -112,28 +90,19 @@
     }
 
     &__actions {
-        display: flex;
-        gap: 3rem;
+        @include mixins.flex-style(row, nowrap, 3rem);
         justify-content: center;
     }
 
     &__button {
-        padding: 0.75rem 2rem;
-        border: none;
-        border-radius: 4px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: opacity 0.2s;
-
+        @include mixins.btn-details;
         &:hover {
             opacity: 1.9;
         }
-
         &--confirm {
             background: #00c853;
             color: white;
         }
-
         &--cancel {
             background: #ff3d00;
             color: white;

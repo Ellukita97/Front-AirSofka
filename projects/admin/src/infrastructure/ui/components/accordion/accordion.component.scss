@@ -15,6 +15,10 @@ details[open] .accordion__header--icon {
     cursor: pointer;
     font-family: Arial, sans-serif;
 
+    &:hover {
+        background-color: rgba(210, 208, 208, 0.119);
+    }
+
     &__header {
         @include mixins.flex-style(column, nowrap, 5px);
         align-items: center;
@@ -23,11 +27,10 @@ details[open] .accordion__header--icon {
     }
 
     &__icon {
-        font-size: 19px;
-        color: #666;
+        @include mixins.font-style(19px, 400, variables.$font-opacity);
+        display: flex;
         width: 100%;
         padding-right: 40px;
-        display: flex;
         justify-content: flex-end;
     }
 
@@ -39,24 +42,20 @@ details[open] .accordion__header--icon {
     }
 
     &__info {
-        display: flex;
+        @include mixins.flex-style(row, nowrap, 20px);
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
         width: 100%;
 
         &-reserva {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
+            @include mixins.flex-style(row, wrap, 0);
+            @include mixins.font-style(16, bold);
             align-items: center;
-            font-weight: bold;
             width: 33%;
         }
 
         &-icon {
-            font-size: 25px;
-            color: #838383;
+            @include mixins.font-style(25px, bold, #838383);
             transform: rotate(-40deg);
             padding-bottom: 5px;
             width: 10%;
@@ -65,79 +64,67 @@ details[open] .accordion__header--icon {
         }
 
         &-label {
-            font-size: 22px;
+            @include mixins.font-style(22px, bold);
             width: 60%;
         }
 
         &-number {
-            font-size: 16px;
+            @include mixins.font-style(16px, 500);
             width: 70%;
             padding-left: 30px;
-            font-weight: 500;
-
         }
 
         &-calendar {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
+            @include mixins.flex-style(column, nowrap, 5);
+            @include mixins.font-style(13px, 500, #494949);
             align-items: center;
-            font-size: 13px;
-            color: #494949;
-            font-weight: 500;
             width: 33%;
         }
 
         &-iconCalendar {
-            font-size: 20px;
+            @include mixins.font-style(20px);
+            margin-bottom: 5px;
         }
 
 
         &-state {
-            width: 33%;
             display: flex;
+            width: 33%;
             justify-content: end;
             padding-right: 30px;
 
             & p {
-                background-color: #f5d742;
-                color: rgb(0, 0, 0);
-                font-weight: bold;
-                font-size: 12px;
+                background-color: variables.$state-pending;
+                @include mixins.font-style(12px, bold, variables.$white);
                 padding: 5px 10%;
                 border-radius: 5px;
-
                 text-align: center;
             }
         }
     }
 
     &__destination {
-        display: flex;
+        @include mixins.flex-style(row, nowrap, 15px);
         align-items: center;
         text-align: center;
-        gap: 15px;
         justify-content: space-evenly;
         width: 60%;
 
         &-name {
-            font-size: 22px;
-            font-weight: bold;
+            @include mixins.font-style(22px, bold);
         }
 
         &-details {
-            display: flex;
-            flex-direction: column;
+            @include mixins.flex-style(column);
+            @include mixins.font-style(12px, 500, variables.$font-opacity);
             align-items: center;
-            font-size: 12px;
-            color: #666;
         }
 
         &-route {
+            @include mixins.font-style(19px, bold);
             font-size: 19px;
             font-weight: bold;
         }
     }
 
 }
-
