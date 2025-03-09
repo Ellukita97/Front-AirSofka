@@ -6,8 +6,9 @@
 .new-destiny {
   position: relative;
   overflow: hidden;
-  height: 70vh;
+  height: 80vh;
   border-radius: 20px;
+  font-family: variables.$primary-font;
 
   &__image {
     object-fit: cover;

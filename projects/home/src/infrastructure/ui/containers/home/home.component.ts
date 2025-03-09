@@ -3,6 +3,7 @@ import { HeroComponent } from '../../components/hero/hero.component';
 import { NewDestinyComponent } from '../../components/new-destiny/new-destiny.component';
 import { BestFlightsComponent } from '../../components/best-flights/best-flights.component';
 import { RecomendationsSectionComponent } from '../../components/recomendations-section/recomendations-section.component';
+import { PromptionsSectionComponent } from '../../components/promptions-section/promptions-section.component';
 
 @Component({
   selector: 'lib-home',
@@ -11,6 +12,7 @@ import { RecomendationsSectionComponent } from '../../components/recomendations-
     NewDestinyComponent,
     BestFlightsComponent,
     RecomendationsSectionComponent,
+    PromptionsSectionComponent,
   ],
   templateUrl: './home.component.html',
 })

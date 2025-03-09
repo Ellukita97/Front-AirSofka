@@ -11,6 +11,7 @@
   justify-content: space-between;
   max-width: 70dvw;
   margin: 0 auto;
+  font-family: variables.$primary-font;
 
   &__header {
     display: flex;
@@ -31,7 +32,7 @@
 
     &-description {
       @include mixins.text-paragraph;
-      max-width: 400px;
+      max-width: 500px;
     }
   }
 
