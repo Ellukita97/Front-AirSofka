@@ -4,6 +4,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "authentication": [
+        "./dist/authentication"
+      ],
       "booking": [
         "./dist/booking"
       ],
