@@ -31,9 +31,12 @@
           class="flight-search__field-input"
           formControlName="origin"
           placeholder="Desde"
+          [ngClass]="{ 'flight-search__field-input--error': isFieldInvalid('origin') }"
         />
-        <span class="flight-search__field-swap"></span>
       </div>
+      @if (isFieldInvalid('origin')) {
+        <span class="flight-search--error">❗Selecciona un origen</span>
+      }
     </div>
     <div class="flight-search__swap" (click)="swapLocations()">
       <svg
@@ -89,8 +92,12 @@
           class="flight-search__field-input"
           formControlName="destination"
           placeholder="Hacia"
+          [ngClass]="{ 'flight-search__field-input--error': isFieldInvalid('destination') }"
         />
       </div>
+      @if (isFieldInvalid('destination')) {
+        <span class="flight-search--error">❗Selecciona un destino</span>
+      }
     </div>
   </div>
 

@@ -9,7 +9,6 @@ import { CalendarModalComponent } from '../calendar-modal/calendar-modal.compone
     CommonModule,
     ReactiveFormsModule,
     CalendarModalComponent,
-    DatePipe,
   ],
   templateUrl: './location-selector.component.html',
   styleUrl: './location-selector.component.scss',
@@ -55,5 +54,11 @@ export class LocationSelectorComponent {
       'EEE, d MMM'
     )} - ${this.datePipe.transform(dates.return, 'EEE, d MMM')}`;
     this.showCalendarModal = false;
+  }
+
+  isFieldInvalid(field: string): boolean | undefined{
+    return (
+      this.formGroup.get(field)?.invalid && this.formGroup.get(field)?.touched
+    );
   }
 }
