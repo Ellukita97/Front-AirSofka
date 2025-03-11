@@ -11,6 +11,6 @@ import { CommonModule } from '@angular/common';
 })
 export class AccordionComponent {
   dataReservas = input<IReservationData[]>();
-  
+ 
 }
     
