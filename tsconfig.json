@@ -4,18 +4,15 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "booking": [
-        "./dist/booking"
-      ],
-      "home": [
-        "./dist/home"
+      "availability": [
+        "./dist/availability"
       ],
       "shared": [
         "./dist/shared"
       ]
     },
     "outDir": "./dist/out-tsc",
-    "strict": true,
+    "strict": false,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
