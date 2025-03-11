@@ -1,4 +1,4 @@
-<lib-button-modal [text]="actionText()" (onClick)="toggle()"></lib-button-modal>
+<lib-button-modal [text]="actionText()" (onClick)="toggle()" [variant]="variant()"></lib-button-modal>
 
 <dialog class="modal" [ngClass]="{'modal--visible': visible}">
   <div class="modal__content" [hidden]="!visible">

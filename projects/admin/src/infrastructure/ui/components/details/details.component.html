@@ -69,9 +69,21 @@
                     </div>    
                 </div>
             </section>
-        <footer class="details__actions" [ngStyle]="{'display': detailsData().status === 'Pending' ? 'flex' : 'none'}">
-            <button class="details__button details__button--confirm" (click)="showPopup()">Confirmar</button>
-            <button class="details__button details__button--cancel">Cancelar</button>
+            <footer class="details__actions" [ngStyle]="{'display': detailsData().status === 'Pending' ? 'flex' : 'none'}">
+            <lib-modal
+                [title]="'¿Estas seguro que quieres emitir?'"
+                [actionText]="'Confirmar'" 
+                (onConfirm)="confirma()"
+                (onCancel)="cancela()"
+                [variant]="'primary'"
+                ></lib-modal>
+                <lib-modal
+                [title]="'¿Estas seguro que quieres cancelar?'"
+                [actionText]="'Cancelar'" 
+                (onConfirm)="confirma()"
+                (onCancel)="cancela()"
+                [variant]="'secondary'"
+            ></lib-modal>
         </footer>
     </article>
 

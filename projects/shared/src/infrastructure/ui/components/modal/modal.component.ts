@@ -12,9 +12,9 @@ export class ModalComponent {
 
   actionText = input<string>()
   title? = input<string>()
-  confirmText = input<string>("Confirm");
-  cancelText = input<string>("Cancel");
-
+  confirmText = input<string>("Confirmar");
+  cancelText = input<string>("Cancelar");
+  variant = input<"primary" | "secondary">();
   onConfirm = output<void>()
   onCancel = output<void>()
 
