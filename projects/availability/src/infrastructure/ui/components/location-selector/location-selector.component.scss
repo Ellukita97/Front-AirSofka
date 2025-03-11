@@ -53,9 +53,11 @@
 
       &--error {
         border-bottom: 1px solid variables.$red;
-        &:hover{
+
+        &:hover {
           border-bottom: 1px solid variables.$red;
         }
+
         &:focus {
           border-bottom: 2px solid variables.$red;
         }
@@ -94,5 +96,54 @@
     font-weight: 500;
     margin-top: 10px;
     margin-left: 45px;
+  }
+
+  &__city {
+    position: absolute;
+    background: white;
+    border: 1px solid variables.$blue;
+    border-radius: 5px;
+    list-style: none;
+    margin-top: 10px;
+    margin-left: 50px;
+    width: 245px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1;
+
+    li {
+      display: flex;
+      justify-content: row;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      gap: 5px;
+
+      div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      &:hover {
+        background-color: variables.$background-color;
+        cursor: pointer;
+      }
+    }
+
+    &-name {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    &-airport {
+      font-size: 14px;
+      color: variables.$gray;
+    }
+
+    &-abbreviation {
+      font-size: 18px;
+      font-weight: 500;
+      color: variables.$blue;
+    }
   }
 }

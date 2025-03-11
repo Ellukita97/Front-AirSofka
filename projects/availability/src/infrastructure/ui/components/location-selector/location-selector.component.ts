@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CalendarModalComponent } from '../calendar-modal/calendar-modal.component';
+import { cities, City } from './cities';
 
 @Component({
   selector: 'app-location-selector',
@@ -24,6 +25,26 @@ export class LocationSelectorComponent {
   showCalendarModal = false;
   selectedDates: string = '';
   datePipe = new DatePipe('es-ES');
+
+  filteredCities: City[] = [];
+  showCityList = false;
+  activeField: 'origin' | 'destination' | null = null;
+
+  filterCities(event: any, field: 'origin' | 'destination') {
+    this.activeField = field;
+    const inputElement = event.target as HTMLInputElement;
+    const query = inputElement.value;
+    
+    this.filteredCities = cities.filter(city =>
+      city.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }
+
+  selectCity(field: string, city: City) {
+    this.formGroup.patchValue({ [field]: city.name });
+    this.filteredCities = [];
+    this.showCityList = false;
+  }
 
   swapLocations() {
     const origin = this.formGroup.get('origin')?.value;
