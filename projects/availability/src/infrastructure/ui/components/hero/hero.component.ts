@@ -16,10 +16,10 @@ import { ExtraOptionComponent } from '../extra-option/extra-option.component';
   styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent {
-  @Output() formChange = new EventEmitter<FormGroup>();
+  @Output() formSubmit = new EventEmitter<FormGroup>();
 
-  handleFormChange(updatedForm: FormGroup) {
-    this.formChange.emit(updatedForm); 
+  handleFormSubmit(submittedForm: FormGroup) {
+    this.formSubmit.emit(submittedForm); 
   }
 
   extraOptions = [

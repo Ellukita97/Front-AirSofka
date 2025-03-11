@@ -24,7 +24,7 @@ export class SearchFormComponent implements OnInit {
   flightForm: FormGroup;
   errorMessage: string = '';
 
-  @Output() formChange = new EventEmitter<FormGroup>();
+  @Output() formSubmit = new EventEmitter<FormGroup>();
 
   constructor(private fb: FormBuilder) {}
   
@@ -52,7 +52,6 @@ export class SearchFormComponent implements OnInit {
     });
 
     this.flightForm.valueChanges.subscribe(() => {
-      this.formChange.emit(this.flightForm.value);
       this.errorMessage = '';
     });
   }
@@ -60,6 +59,7 @@ export class SearchFormComponent implements OnInit {
   onSubmit() {
     if (this.flightForm.valid) {
       this.errorMessage = ''; 
+      this.formSubmit.emit(this.flightForm.value);
       window.open('about:blank', '_blank');
     } else {
       this.errorMessage = '❗El formulario no es válido. Completa todos los campos.';

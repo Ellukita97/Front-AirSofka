@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   dataForm: FormGroup = new FormGroup({});
 
-  handleFormChange(data: FormGroup) {
+  handleFormSubmit(data: FormGroup) {
     this.dataForm = data;
     this._formUsecase.execute(this.dataForm);
   }
