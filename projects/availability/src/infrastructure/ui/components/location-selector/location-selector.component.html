@@ -1,7 +1,7 @@
 <div class="flight-search__main" [formGroup]="formGroup">
   <div class="flight-search__locations">
     <div class="flight-search__origin">
-      <div class="flight-search__field">
+      <div class="flight-search__field" formGroupName="origin">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="48"
@@ -29,7 +29,7 @@
         <input
           type="text"
           class="flight-search__field-input"
-          formControlName="origin"
+          formControlName="name"
           placeholder="Desde"
           [ngClass]="{ 'flight-search__field-input--error': isFieldInvalid('origin') }"
           (input)="filterCities($event, 'origin')"
@@ -78,7 +78,7 @@
     </div>
 
     <div class="flight-search__destination">
-      <div class="flight-search__field">
+      <div class="flight-search__field" formGroupName="destination">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="48"
@@ -105,7 +105,7 @@
         <input
           type="text"
           class="flight-search__field-input"
-          formControlName="destination"
+          formControlName="name"
           placeholder="Hacia"
           [ngClass]="{ 'flight-search__field-input--error': isFieldInvalid('destination') }"
           (input)="filterCities($event, 'destination')"

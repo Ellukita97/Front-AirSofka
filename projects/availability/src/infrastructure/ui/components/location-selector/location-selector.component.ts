@@ -41,7 +41,9 @@ export class LocationSelectorComponent {
   }
 
   selectCity(field: string, city: City) {
-    this.formGroup.patchValue({ [field]: city.name });
+    this.formGroup.patchValue({
+      [field]: { name: city.name, abbreviation: city.abbreviation, airport: city.airport }
+    });
     this.filteredCities = [];
     this.showCityList = false;
   }
@@ -78,8 +80,6 @@ export class LocationSelectorComponent {
   }
 
   isFieldInvalid(field: string): boolean | undefined{
-    return (
-      this.formGroup.get(field)?.invalid && this.formGroup.get(field)?.touched
-    );
+    return this.formGroup.get(`${field}.name`)?.invalid && this.formGroup.get(`${field}.name`)?.touched;
   }
 }

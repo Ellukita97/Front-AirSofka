@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -20,34 +20,62 @@ import { LocationSelectorComponent } from '../../components/location-selector/lo
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.scss'],
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
   flightForm: FormGroup;
+  errorMessage: string = '';
 
-  constructor(private fb: FormBuilder) {
+  @Output() formChange = new EventEmitter<FormGroup>();
+
+  constructor(private fb: FormBuilder) {}
+  
+  ngOnInit() {
     this.flightForm = this.fb.group({
       passengers: this.fb.group({
         adults: [1, Validators.required],
         children: [0],
         infants: [0],
       }),
-      origin: ['', Validators.required],
-      destination: ['', Validators.required],
+      origin: this.fb.group({
+        name: ['', Validators.required],
+        abbreviation: [''],
+        airport: [''],
+      }),
+      destination: this.fb.group({
+        name: ['', Validators.required],
+        abbreviation: [''],
+        airport: [''],
+      }),
       dates: this.fb.group({
         departure: [null, Validators.required],
         return: [null, Validators.required],
       }),
     });
+
+    this.flightForm.valueChanges.subscribe(() => {
+      this.formChange.emit(this.flightForm.value);
+      this.errorMessage = '';
+    });
   }
+
   onSubmit() {
-    console.log(this.flightForm.value);
+    if (this.flightForm.valid) {
+      this.errorMessage = ''; 
+      window.open('about:blank', '_blank');
+    } else {
+      this.errorMessage = '❗El formulario no es válido. Completa todos los campos.';
+    }
   }
 
   updateOrigin(newOrigin: string) {
-    this.flightForm.patchValue({ origin: newOrigin });
+    this.flightForm.patchValue({
+      origin: { name: newOrigin }
+    });
   }
 
   updateDestination(newDestination: string) {
-    this.flightForm.patchValue({ destination: newDestination });
+    this.flightForm.patchValue({
+      destination: { name: newDestination }
+    });
   }
 
   updateDates(newDeparture: Date, newReturnDate: Date) {
