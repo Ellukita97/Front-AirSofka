@@ -1,69 +1,78 @@
-<main class="details">
-    <section class="details__capa" (click)="closeDetailsHandler()"></section>
+ <main class="details">   
     <article class="details__card">
-
-        <span class="details__close" (click)="closeDetailsHandler()">❌</span>
-
         <header class="details__header">
             <h1 class="details__title">Detalles de la reserva</h1>
         </header>
-
-        <section class="details__info">
-            <div class="details__column">
-                <div class="details__initial">
-                    <h2 class="details__subtitle">Pasajero</h2>
-                    <p class="details__text">Nombre del pasajero</p>
+            <section class="details__info">
+                <div class="details__column">
+                    <div class="details__initial">
+                        <h2 class="details__subtitle">Pasajero</h2>
+                        <p class="details__text">{{detailsData().reservedBy}}</p>
+                    </div>
+    
+                    <div class="details__initial">
+                        <h2 class="details__subtitle">Clase</h2>
+                        <p class="details__text">{{detailsData().flightClass}}</p>
+                    </div>
+    
+                    <div class="details__initial">
+                        <h2 class="details__subtitle">Fecha de compra</h2>
+                        <p class="details__text">{{detailsData().purchaseDate}}</p>
+                    </div>
+    
+                    <div class="details__initial">
+                        <h2 class="details__subtitle">Método de pago</h2>
+                        <p class="details__text">{{detailsData().paymentMethod}}</p>
+                    </div>
+    
                 </div>
-
-                <div class="details__initial">
-                    <h2 class="details__subtitle">Clase</h2>
-                    <p class="details__text">Economica</p>
+    
+                <div class="details__row">
+                    <div class="details__group">
+                        <h2 class="details__subtitle">Documento del pasajero</h2>
+                        <p class="details__text">{{detailsData().email}}</p>
+                    </div>
+                    <div class="details__group">
+                        <h2 class="details__subtitle">Impuestos</h2>
+                        <p class="details__text">{{detailsData().tax}}</p>
+                    </div>
+    
+                    <div class="details__group">
+                        <h2 class="details__subtitle">Cantidad de pasajeros</h2>
+                        <p class="details__text">{{detailsData().passengersCount}}</p>
+                    </div>
+    
+                    <div class="details__group">
+                        <h2 class="details__subtitle">Precio</h2>
+                        <p class="details__text">{{detailsData().price}}</p>
+                    </div>
+    
+                    <div class="details__status" [ngClass]="{'pending': detailsData().status === 'Pending', 'confirmed': detailsData().status === 'Confirmed', 'cancelled': detailsData().status === 'Cancelled'}">
+                        @if (detailsData().status === "Pending") {
+                            <p class="details__alert">
+                                    <img src="admin/watch.svg" alt="warning" class="details__alert-icon">
+                                La reserva sigue pendiente
+                            </p>
+                        }
+                        @if (detailsData().status === "Confirmed") {
+                            <p class="details__alert">
+                                    <img src="admin/check.svg" alt="warning" class="details__alert-icon">
+                                La reserva ha sido confirmada
+                            </p>
+                        }@if (detailsData().status === "Cancelled") {
+                            <p class="details__alert">
+                                <img src="admin/watch.svg" alt="warning" class="details__alert-icon">
+                            La reserva ha sido cancelada
+                        </p>
+                        }
+                        
+                    </div>    
                 </div>
-
-                <div class="details__initial">
-                    <h2 class="details__subtitle">Fecha de compra</h2>
-                    <p class="details__text">12 Feb 2025</p>
-                </div>
-
-                <div class="details__initial">
-                    <h2 class="details__subtitle">Método de pago</h2>
-                    <p class="details__text">Tarjeta de credito</p>
-                </div>
-
-            </div>
-
-            <div class="details__row">
-                <div class="details__group">
-                    <h2 class="details__subtitle">Documento del pasajero</h2>
-                    <p class="details__text">1100124598</p>
-                </div>
-                <div class="details__group">
-                    <h2 class="details__subtitle">Impuestos</h2>
-                    <p class="details__text">12.000 $</p>
-                </div>
-
-                <div class="details__group">
-                    <h2 class="details__subtitle">Cantidad de pasajeros</h2>
-                    <p class="details__text">5</p>
-                </div>
-
-                <div class="details__group">
-                    <h2 class="details__subtitle">Precio</h2>
-                    <p class="details__text">45.000 $</p>
-                </div>
-
-                <div class="details__status">
-                    <p class="details__alert">
-                        <span class="details__alert-icon">⚠️</span>
-                        La reserva sigue pendiente
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <footer class="details__actions">
-            <button class="details__button details__button--confirm">Confirmar</button>
+            </section>
+        <footer class="details__actions" [ngStyle]="{'display': detailsData().status === 'Pending' ? 'flex' : 'none'}">
+            <button class="details__button details__button--confirm" (click)="showPopup()">Confirmar</button>
             <button class="details__button details__button--cancel">Cancelar</button>
         </footer>
     </article>
+
 </main>

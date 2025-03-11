@@ -1,4 +1,5 @@
 @use '../../styles/variables' as variables;
+@use './../../../../../../shared/src/infrastructure/ui/styles/variables.scss' as variablesGlobales;
 @use '../../styles/mixins' as mixins;
 
 .details {
@@ -6,29 +7,19 @@
     justify-content: center;
     padding: 1rem;
     padding-top: 50px;
-
-    &__capa {
-        @include mixins.modal-opacity;
-    }
+    font-family: variablesGlobales.$font-size-title-secondary;
 
     &__card {
         @include mixins.card-modal;
-    }
-
-    &__close {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        font-size: 1rem;
-        cursor: pointer;
     }
 
     &__header {
         margin-bottom: 2rem;
 
         & h1 {
-            @include mixins.font-style(1.5rem, bold, variables.$font-titles);
+            @include mixins.font-style(1.5rem, bold, variablesGlobales.$font-size-title-main);
             margin: 0;
+            font-family: variablesGlobales.$primary-font;
         }
     }
 
@@ -62,18 +53,20 @@
         @include mixins.font-style(0.875rem, normal, variables.$font-opacity);
         margin: 0 0 0.5rem 0;
         width: 100%;
+        font-family: variablesGlobales.$font-size-title-secondary;
+
     }
 
     &__text {
         @include mixins.font-style(1rem, 600, variables.$font-titles);
         font-size: 1rem;
         margin: 0;
+        font-family: variablesGlobales.$font-size-text-secondary;
     }
 
     &__status {
         display: flex;
         padding: 1rem;
-        background: #fff9e6;
         border-radius: 4px;
         width: 100%;
     }
@@ -85,7 +78,7 @@
         color: variables.$font-titles;
 
         &-icon {
-            font-size: 1.25rem;
+            width: 40px;
         }
     }
 
@@ -96,11 +89,13 @@
 
     &__button {
         @include mixins.btn-details;
+        font-family: variablesGlobales.$font-size-text-secondary;
         &:hover {
-            opacity: 1.9;
+            opacity: 90%;
+            transform: scale(1.1);
         }
         &--confirm {
-            background: #00c853;
+            background-color: variables.$state-confirmed;
             color: white;
         }
         &--cancel {
@@ -108,4 +103,15 @@
             color: white;
         }
     }
+}
+
+.pending {
+    background-color: #f5d742ab;
+}
+.confirmed {
+    background: #00c85387;
+}
+
+.cancelled {
+    background-color: #ff3c009e;
 }

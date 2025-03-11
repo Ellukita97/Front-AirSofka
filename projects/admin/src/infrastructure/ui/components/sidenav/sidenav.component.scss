@@ -1,5 +1,7 @@
 @use './../../styles/mixins' as mixins;
 @use './../../styles/variables' as variables;
+@use './../../../../../../shared/src/infrastructure/ui/styles/variables.scss' as variablesGlobales;
+
 
 .sidenav {
     @include mixins.flex-style(column, nowrap, 20%);
@@ -23,11 +25,11 @@
 
     &__menu-item {
         @include mixins.flex-style(column, nowrap, 0px);
+        @include mixins.font-style(variablesGlobales.$font-size-title-secondary, variablesGlobales.$font-weight-regular, variablesGlobales.$background-color);
+        font-family: variablesGlobales.$font-size-text-secondary;
         justify-content: space-between;
         align-items: center;
-        font-size: 25px;
         cursor: pointer;
-        color: variables.$white;
     }
 
 }

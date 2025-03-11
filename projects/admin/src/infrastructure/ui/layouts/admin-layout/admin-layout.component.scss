@@ -1,5 +1,5 @@
 @use './../../styles/reset.scss' as reset;
-@use './../../styles/variables' as variables;
+@use './../../../../../../shared/src/infrastructure/ui/styles/variables.scss' as variables;
 @use './../../styles/mixins' as mixins;
 .layout {
     height: 100vh;
@@ -19,16 +19,19 @@
     &__header {
         @include mixins.flex-style(row, nowrap, 0px);
         align-items: center;
-        background-color: variables.$secondary-color;
+        background-color: rgb(207, 207, 207);
         padding: 0 40px;
         height: 160px;
         & h1{
-            font-size: 40px;
+            font-size: variables.$font-size-title-main;
+            font-family: variables.$primary-font;
         }
     }
 
     &__body {
         padding: 0px 40px;
         overflow: scroll;
+        border-color: aqua;
+        height: 100%;
     }
 }
