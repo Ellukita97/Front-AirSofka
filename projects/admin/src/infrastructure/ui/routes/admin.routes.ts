@@ -18,6 +18,6 @@ export const adminRoutes: Routes = [
         component: ListFlightsComponent,
         outlet:'table'
       },
-    ],
+    ], 
   },
 ];

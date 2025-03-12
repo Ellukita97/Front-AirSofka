@@ -1,0 +1,18 @@
+
+.actions {
+  &__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    border: none;
+    left: 100%;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
+.icon use {
+  transform: scale(1.1);
+}

@@ -1,0 +1,118 @@
+@use "../../../ui/styles/mixins.scss" as mix;
+@use "../../../../../../shared/src/infrastructure/ui/styles/variables.scss" as vars;
+.card {
+  background-color: vars.$background-color;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 0 auto 30px;
+  padding: 20px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-height: 600px;
+  overflow: hidden;
+  overflow-y: auto;
+  font-family: Jost, sans-serif;
+  &__title {
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    font-size: 2rem;
+    color:vars.$black;
+  }
+
+  &__table {
+    width: 100%;
+    margin-top: 20px;
+  }
+  &__header{
+    display: flex;
+    justify-content: space-between; 
+  }
+  &__button{
+    background-color: vars.$blue-dark;
+    color: vars.$white;
+    padding: 10px 10px;
+    width: 15%;
+    border-radius: 5px;
+    margin-right: 5%;
+    border: none;
+    cursor: pointer;
+  }
+  &__button:hover{
+    background-color: vars.$blue;
+  }
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+
+  &__header {
+    border-bottom: 1px solid vars.$blue-dark;
+    color: vars.$black;
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    padding: 12px 15px;
+    text-align: center;
+  }
+
+  &__row {
+   
+    &:nth-child(even) {
+      background-color: vars.$white;
+    }
+
+    &:hover {
+      background-color: rgba(76, 175, 80, 0.1);
+
+      .actions__items {
+        visibility: visible;
+      }
+    }
+  }
+
+  &__cell {
+    padding: 12px 15px;
+    text-align: center;
+    color: vars.$black;
+    font-size: 1.5rem;
+
+    &:first-child {
+      font-weight: bold;
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  position: relative;
+  width: 60px;
+  &__items {
+    visibility: hidden;
+    display: flex;
+    gap: 10px 0px;
+    position: relative;
+  }
+
+  &__button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.error {
+  &__title {
+    font-size: 1.5rem;
+    color: red;
+    margin: 0;
+  }
+
+  &__message {
+    font-size: 1rem;
+    color: vars.$black;
+  }
+}

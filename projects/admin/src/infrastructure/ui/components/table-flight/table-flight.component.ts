@@ -9,7 +9,7 @@ import { ButtonTableComponent } from 'shared';
   selector: 'lib-table-flight',
   imports: [CurrencyPipe,DatePipe,ButtonTableComponent],
   templateUrl: './table-flight.component.html',
-  styleUrl: './table-flight.component.css'
+  styleUrl: './table-flight.component.scss'
 })
 export class TableFlightComponent {
 
