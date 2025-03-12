@@ -1,13 +1,16 @@
 @use "../../../ui/styles/mixins.scss" as mix;
-@use "../../../../../../shared/src/infrastructure/ui/styles/variables.scss" as vars;
+@use "../../../../../../shared/src/infrastructure/ui/styles/variables.scss" as
+  vars;
 .card {
   background-color: vars.$background-color;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 0 auto 30px;
+  margin: 10px auto 30px;
   padding: 20px;
   transition: transform 0.3s, box-shadow 0.3s;
-  max-height: 600px;
+
+  max-width: 1600px;
+  height: auto;
   overflow: hidden;
   overflow-y: auto;
   font-family: Jost, sans-serif;
@@ -16,28 +19,29 @@
     width: 100%;
     margin: 0;
     font-size: 2rem;
-    color:vars.$black;
+    color: vars.$black;
   }
 
   &__table {
     width: 100%;
     margin-top: 20px;
   }
-  &__header{
+  &__header {
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
   }
-  &__button{
+  &__button {
     background-color: vars.$blue-dark;
     color: vars.$white;
     padding: 10px 10px;
     width: 15%;
+    font-size: 1.5rem;
     border-radius: 5px;
     margin-right: 5%;
     border: none;
     cursor: pointer;
   }
-  &__button:hover{
+  &__button:hover {
     background-color: vars.$blue;
   }
 }
@@ -57,7 +61,6 @@
   }
 
   &__row {
-   
     &:nth-child(even) {
       background-color: vars.$white;
     }
@@ -86,16 +89,20 @@
 .actions {
   display: flex;
   position: relative;
-  width: 60px;
+  width: 70px;
+  margin-right: 10px;
   &__items {
+    justify-content: center;
+    align-items: center;
     visibility: hidden;
     display: flex;
-    gap: 10px 0px;
+    gap: 20px 0px 0px;
+    margin-top: 1rem;
     position: relative;
   }
 
   &__button {
-    border: none;
+    position: relative;
     background-color: transparent;
     cursor: pointer;
     display: flex;

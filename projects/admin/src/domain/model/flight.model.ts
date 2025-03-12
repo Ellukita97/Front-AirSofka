@@ -30,6 +30,21 @@ export interface IFlight {
     totalPriceEconomyClassicPrice: number;
   }
 
+  export interface IFlightInfo{
+    flightNumber: string;
+    flightModel: string;
+    routeId: string;
+    departureTime: string;
+    arrivalTime: string;
+    totalSites: number;
+    price: number;
+    BF: number;
+    BB: number;
+    EF: number;
+    EB: number;
+    EC: number;
+  }
+
   export interface IFlightRequest {
     flightNumber: string;
     flightModel: string;
@@ -39,14 +54,20 @@ export interface IFlight {
     arrivalTime: string;
   }
 
-   export function mapFlightToRequest(flight: IFlight): IFlightRequest {
+   export function mapFlightToRequest(flight: IFlight): IFlightInfo {
     return {
       flightNumber: flight.flightNumber,
       flightModel: flight.flightModel,
       routeId: flight.routeId,
-      price: flight.economyBasicPrice, 
       departureTime: flight.departureTime,
       arrivalTime: flight.arrivalTime,
+      totalSites: flight.seats,
+      price: flight.economyBasicPrice, 
+      BF:flight.totalPriceBusinessFullPrice,
+      BB: flight.totalPriceBusinessBasicPrice,
+      EF: flight.totalPriceEconomyFullPrice,
+      EB: flight.totalPriceEconomyBasicPrice,
+      EC: flight.totalPriceEconomyClassicPrice,
     };
   }
   

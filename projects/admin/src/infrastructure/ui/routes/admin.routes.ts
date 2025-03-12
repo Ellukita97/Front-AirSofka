@@ -9,26 +9,24 @@ export const adminRoutes: Routes = [
     component: AdminLayoutComponent,
     children: [
       {
+        path: 'view',
+        loadComponent: () =>
+          import(
+            '../container/view-analytics-container/view-analytics-container.component'
+          ).then((m) => m.ViewAnalyticsContainerComponent),
+      },
+      {
+        path: 'booking',
+        component: ReservaContainerComponent,
+      },
+      {
+        path: 'flights',
+        component: ListFlightsComponent,
+      },
+      {
         path: '',
-        component: AdminLayoutComponent,
-        children: [
-          {
-            path: 'view',
-            loadComponent: () =>
-              import(
-                '../container/view-analytics-container/view-analytics-container.component'
-              ).then((m) => m.ViewAnalyticsContainerComponent),
-          },
-          {
-            path: 'booking',
-            component: ReservaContainerComponent,
-          },
-          {
-            path: '',
-            redirectTo: 'view',
-            pathMatch: 'full',
-          },
-        ],
+        redirectTo: 'view',
+        pathMatch: 'full',
       },
     ],
   },
