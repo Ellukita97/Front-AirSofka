@@ -3,12 +3,12 @@ import { BodyLayoutComponent } from 'shared';
 
 export const routes: Routes = [
   {
-    path: 'Admin',
+    path: 'admin',
     loadChildren: () => import('admin').then((m) => m.adminRoutes),
   },
   {
     path: '',
     component: BodyLayoutComponent,
-    loadChildren: () => import('availability').then((m) => m.routes),
+    loadChildren: () => import('availability').then((m) => m.routes),     
   },
 ];
