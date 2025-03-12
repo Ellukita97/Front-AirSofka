@@ -1,6 +1,9 @@
 <div class="card">
     <h2 class="card__title">Vuelos</h2>
+    asdasd
+    {{dataFlight()}}
     <table class="card__table styled-table">
+        
       <thead>
         <tr>
           @for (item of columnKeys; track $index) {
@@ -19,6 +22,9 @@
             @else {
               @if (key === 'localDate') {
                 {{ item[key] | date: 'medium' }}
+              }
+              @else{
+                {{item[key]}}
               }
             }
           </td>

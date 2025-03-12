@@ -1,4 +1,4 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { IFlight } from '../../domain/model/flight.model';
@@ -11,14 +11,9 @@ export class GetFlightsService {
 
   private http = inject(HttpClient)
 
-  getFlights(): Observable<IFlight[]>{
-    return this.http.get<any>(environment.apiUrl + '/flights').pipe(
-      map((response)=> this.validateFlightResponse(response)),
-      catchError((error) => {
-        console.log(error);
-        return throwError(()=> new Error('Something went wrong'));
-      })
-    );
+  getFlights(): Observable<any[]>{
+    return this.http.get<any>("http://localhost:8080/api/flight").pipe(
+      map((response)=> response))
   }
 
   private validateFlightResponse(response: any): IFlight[] {
