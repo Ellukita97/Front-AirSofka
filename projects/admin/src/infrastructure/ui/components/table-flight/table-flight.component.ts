@@ -1,6 +1,6 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
 import { Component, EventEmitter, input, Input, output, Output } from '@angular/core';
-import { IFlight } from '../../../../domain/model/flight.model';
+import { IFlight, IFlightRequest, mapFlightToRequest } from '../../../../domain/model/flight.model';
 import { ButtonTableComponent } from 'shared';
 
 
@@ -14,6 +14,7 @@ import { ButtonTableComponent } from 'shared';
 export class TableFlightComponent {
 
   public dataFlight= input.required<IFlight[]>() ;
+  public flightRequests: IFlightRequest[] =[]
   public deleteClient =  output<string>();
   // public createClient = output<IRequiredFlight>();
   ngOnInit(): void {
@@ -23,15 +24,19 @@ export class TableFlightComponent {
   }
 
   get columnKeys(): string[] {
-    
-    return this.dataFlight().length > 0 ? Object.keys(this.dataFlight()[0]) : [];
+    if (this.dataFlight) {
+      this.flightRequests = this.mapFlightsToRequests(this.dataFlight());
+    }
+    return this.flightRequests.length > 0 ? Object.keys(this.flightRequests[0]) : [];
    
   }
   images = [
-    'public/admin/form-svgrepo-com.svg#icon-delete',  
-    'public/admin/form-svgrepo-com.svg#icon-edit'
+    '/admin/form-svgrepo-com.svg#icon-delete',  
+    '/admin/form-svgrepo-com.svg#icon-update'
     ];
   
 
-
+     mapFlightsToRequests(flights: IFlight[]): IFlightRequest[] {
+      return flights.map(mapFlightToRequest);
+    }
 }

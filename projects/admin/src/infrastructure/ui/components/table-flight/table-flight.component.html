@@ -12,7 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of dataFlight(); track $index) {
+        @for (item of flightRequests; track $index) {
         <tr class="styled-table__row">
           @for (key of columnKeys; track $index) {
           <td class="styled-table__cell">
