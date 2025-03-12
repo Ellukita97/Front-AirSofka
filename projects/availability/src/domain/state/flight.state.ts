@@ -1,8 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { StateFactory } from "shared";
-import { IFlight } from "../model/flight.model";
-import { FormGroup } from "@angular/forms";
+import { IFlight, IFormFlight } from "../model/flight.model";
+import { FormControl, FormGroup } from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,7 @@ export class FlightState {
 
   //#region Subjects
   private readonly flights$ = new BehaviorSubject<IFlight[]>([]);
-  private readonly form$ = new BehaviorSubject<FormGroup>(null);
+  private readonly form$ = new BehaviorSubject<IFormFlight>(null)
   //#endregion
 
   store() {

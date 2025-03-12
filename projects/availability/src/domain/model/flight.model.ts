@@ -22,6 +22,29 @@ export interface IRequiredFlight {
   returnDate: Date;
 }
 
+export interface IFormFlight {
+  origin: {
+    name: string;
+    abbreviation: string;
+    airport: string;
+  },
+  destination: {
+    name: string;
+    abbreviation: string;
+    airport: string;
+  },
+  dates: {
+    departure: Date;
+    return: Date;
+  },
+  passengers: {
+    adults: number;
+    children: number;
+    infants: number;
+  }
+}
+
+
 interface taxes {
   standardTax: number;
   economicTax: number;

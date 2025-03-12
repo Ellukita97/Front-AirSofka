@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { TripOptionsComponent } from '../../components/trip-options/trip-options.component';
 import { LocationSelectorComponent } from '../../components/location-selector/location-selector.component';
 import { Router } from '@angular/router';
+import { IFormFlight } from '../../../../domain/model/flight.model';
 
 @Component({
   selector: 'lib-search-form',
@@ -25,7 +26,7 @@ export class SearchFormComponent implements OnInit {
   flightForm: FormGroup;
   errorMessage: string = '';
 
-  @Output() formSubmit = new EventEmitter<FormGroup>();
+  @Output() formSubmit = new EventEmitter<IFormFlight>();
 
   constructor(private fb: FormBuilder, private router: Router) {}
   
@@ -60,7 +61,8 @@ export class SearchFormComponent implements OnInit {
   onSubmit() {
     if (this.flightForm.valid) {
       this.errorMessage = ''; 
-      this.formSubmit.emit(this.flightForm.value);
+      const formData = this.flightForm.value as IFormFlight;
+      this.formSubmit.emit(formData);
       this.router.navigate(['/flight-selection']);
     } else {
       this.errorMessage = '❗El formulario no es válido. Completa todos los campos.';
