@@ -23,4 +23,9 @@ export const routes: Routes = [
       },
     ],
   },
+  {
+    path: 'flight-selection',
+    children: [
+    ],
+  },
 ];
