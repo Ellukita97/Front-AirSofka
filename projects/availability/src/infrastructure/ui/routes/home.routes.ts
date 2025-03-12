@@ -4,6 +4,7 @@ import { NavbarContainerComponent } from '../containers/navbar-container/navbar-
 import { FooterContainerComponent } from '../containers/footer-container/footer-container.component';
 import { NavbarFlightContainerComponent } from '../containers/navbar-flight-container/navbar-flight-container.component';
 import { FooterFlightContainerComponent } from '../containers/footer-flight-container/footer-flight-container.component';
+import { FlightSelectionComponent } from '../containers/flight-selection/flight-selection.component';
 
 export const routes: Routes = [
   {
@@ -28,6 +29,10 @@ export const routes: Routes = [
   {
     path: 'flight-selection',
     children: [
+      {
+        path: '',
+        component: FlightSelectionComponent,
+      },
       {
         path: '',
         component: NavbarFlightContainerComponent,
