@@ -9,6 +9,6 @@ export const routes: Routes = [
   { 
     path: '',
     component: BodyLayoutComponent,
-    loadChildren: () => import('availability').then((m) => m.routes),
+    loadChildren: () => import('availability').then((m) => m.routes),     
   },
 ];

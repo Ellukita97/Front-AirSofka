@@ -1,7 +1,8 @@
 import { inject, Injectable } from "@angular/core";
 import { Observable, Subscription, tap } from "rxjs";
 import { State } from "../domain/state";
-import { FormGroup } from "@angular/forms";
+import { Form, FormGroup } from "@angular/forms";
+import { IFormFlight } from "../domain/model/flight.model";
 
 
 @Injectable({
@@ -12,8 +13,8 @@ export class FormUseCase {
   private subscriptions: Subscription;
 
   //#region Observables
-  form$(): Observable<FormGroup> {
-    return this._state.flights.form.$() as Observable<FormGroup>;
+  form$(): Observable<IFormFlight> {
+    return this._state.flights.form.$() as Observable<IFormFlight>;
   }
   //#endregion
 
@@ -26,7 +27,7 @@ export class FormUseCase {
     this.subscriptions.unsubscribe();
   }
 
-  execute(form: FormGroup): void {
+  execute(form: IFormFlight): void {
     this.subscriptions.add(
       this._state.flights.form.set(form)
     );
@@ -38,6 +39,10 @@ export class FormUseCase {
         console.log("Formulario recibidooo:", form);
       })
     );
+  }
+
+  spanshot(): IFormFlight {
+    return this._state.flights.form.snapshot();
   }
   //#endregion
 }

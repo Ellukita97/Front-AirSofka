@@ -10,14 +10,26 @@ export const adminRoutes: Routes = [
     children: [
       {
         path: '',
-        component: ListFlightsComponent,
-        outlet: 'accordion',
+        component: AdminLayoutComponent,
+        children: [
+          {
+            path: 'view',
+            loadComponent: () =>
+              import(
+                '../container/view-analytics-container/view-analytics-container.component'
+              ).then((m) => m.ViewAnalyticsContainerComponent),
+          },
+          {
+            path: 'booking',
+            component: ReservaContainerComponent,
+          },
+          {
+            path: '',
+            redirectTo: 'view',
+            pathMatch: 'full',
+          },
+        ],
       },
-      {
-        path: 'vuelos',
-        component: ListFlightsComponent,
-        outlet:'table'
-      },
-    ], 
+    ],
   },
 ];

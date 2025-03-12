@@ -14,28 +14,29 @@ import { ButtonTableComponent } from 'shared';
 export class TableFlightComponent {
 
   public dataFlight= input.required<IFlight[]>() ;
-  public flightRequests: IFlightRequest[] =[]
   public deleteClient =  output<string>();
+  public flightRequests: IFlightRequest[] = [];
   // public createClient = output<IRequiredFlight>();
   ngOnInit(): void {
-    console.log("asdasdasd");
-    
+
     
   }
 
   get columnKeys(): string[] {
     if (this.dataFlight) {
       this.flightRequests = this.mapFlightsToRequests(this.dataFlight());
+      console.log(this.flightRequests);
+      
     }
+    
     return this.flightRequests.length > 0 ? Object.keys(this.flightRequests[0]) : [];
    
   }
   images = [
-    '/admin/form-svgrepo-com.svg#icon-delete',  
-    '/admin/form-svgrepo-com.svg#icon-update'
+    'admin/form-svgrepo-com.svg#icon-delete',  
+    'admin/form-svgrepo-com.svg#icon-update'
     ];
   
-
      mapFlightsToRequests(flights: IFlight[]): IFlightRequest[] {
       return flights.map(mapFlightToRequest);
     }

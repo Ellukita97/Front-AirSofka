@@ -39,13 +39,14 @@ export interface IFlight {
     arrivalTime: string;
   }
 
- export function mapFlightToRequest(flight: IFlight): IFlightRequest {
+   export function mapFlightToRequest(flight: IFlight): IFlightRequest {
     return {
       flightNumber: flight.flightNumber,
       flightModel: flight.flightModel,
       routeId: flight.routeId,
-      price: flight.totalPriceEconomyBasicPrice, // Puedes cambiar esto según la lógica de precios
+      price: flight.economyBasicPrice, 
       departureTime: flight.departureTime,
       arrivalTime: flight.arrivalTime,
     };
   }
+  
