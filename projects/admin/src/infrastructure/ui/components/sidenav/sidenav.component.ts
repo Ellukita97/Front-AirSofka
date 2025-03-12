@@ -1,32 +1,32 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 interface Menu {
-  title: string;
-  path: string;
+  title: string,
+  path: string,
 }
 
 @Component({
   selector: 'lib-sidenav',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './sidenav.component.html',
   styleUrl: './sidenav.component.scss'
 })
 export class SidenavComponent {
 
-
   public listMenu: Menu[] = [
     {
       title: 'Inicio',
-      path: '/admin'
+      path: '/admin/view'
     },
     {
       title: 'Resumen',
-      path: '/Admin'
+      path: '/admin/summary'
     },
     {
       title: 'Reservas',
-      path: '/booking'
+      path: '/admin/booking'
     }
   ]
 }
