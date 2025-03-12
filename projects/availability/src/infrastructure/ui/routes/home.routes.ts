@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from '../containers/home/home.component';
 import { NavbarContainerComponent } from '../containers/navbar-container/navbar-container.component';
 import { FooterContainerComponent } from '../containers/footer-container/footer-container.component';
+import { NavbarFlightContainerComponent } from '../containers/navbar-flight-container/navbar-flight-container.component';
+import { FooterFlightContainerComponent } from '../containers/footer-flight-container/footer-flight-container.component';
 
 export const routes: Routes = [
   {
@@ -26,6 +28,16 @@ export const routes: Routes = [
   {
     path: 'flight-selection',
     children: [
+      {
+        path: '',
+        component: NavbarFlightContainerComponent,
+        outlet: 'header',
+      },
+      {
+        path: '',
+        component: FooterFlightContainerComponent,
+        outlet: 'footer',
+      },
     ],
   },
 ];
