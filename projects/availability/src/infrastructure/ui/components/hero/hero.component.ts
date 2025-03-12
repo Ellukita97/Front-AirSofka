@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SearchFormComponent } from '../../forms/search-form/search-form.component';
 import { ExtraOptionComponent } from '../extra-option/extra-option.component';
@@ -16,6 +16,12 @@ import { ExtraOptionComponent } from '../extra-option/extra-option.component';
   styleUrls: ['./hero.component.scss'],
 })
 export class HeroComponent {
+  @Output() formSubmit = new EventEmitter<FormGroup>();
+
+  handleFormSubmit(submittedForm: FormGroup) {
+    this.formSubmit.emit(submittedForm); 
+  }
+
   extraOptions = [
     {
       href: '#',
