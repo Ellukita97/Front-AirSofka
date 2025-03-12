@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of data; track $index) {
+        @for (item of dataFlight(); track $index) {
         <tr class="styled-table__row">
           @for (key of columnKeys; track $index) {
           <td class="styled-table__cell">
@@ -20,16 +20,13 @@
               @if (key === 'localDate') {
                 {{ item[key] | date: 'medium' }}
               }
-              @else {
-                {{ isArray(item[key]) ? item[key].length : item[key] }}
-              } 
             }
           </td>
           }
           <td class="styled-table__cell actions">
             <div class="actions__items">
-              <!-- <lib-buttons [icon]="images[0]" [rowIndex]="$index" (buttonClick)="deleteData(item.id)" ariaLabel="Remove" ></lib-buttons>
-              <lib-buttons [icon]="images[1]" [rowIndex]="$index" (buttonClick)="updateData(item.id)" ariaLabel="Edit" ></lib-buttons> -->
+              <lib-button-table [icon]="images[0]" [rowIndex]="$index"  ariaLabel="Remove" ></lib-button-table>
+              <lib-button-table [icon]="images[1]" [rowIndex]="$index"  ariaLabel="Edit" ></lib-button-table>
             </div>
           </td>
         </tr>
