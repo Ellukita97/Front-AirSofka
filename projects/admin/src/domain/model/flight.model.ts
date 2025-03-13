@@ -52,8 +52,17 @@ export interface IFlight {
     price: number;
     departureTime: string;
     arrivalTime: string;
-  }
+  }    
 
+  export interface IFlightUpdate {
+    aggregateId:string;
+    flightNumber: string;
+    routeId: string;
+    flightModel: string;
+    price: number;
+    departureTime: string;
+    arrivalTime: string;
+  }
    export function mapFlightToRequest(flight: IFlight): IFlightInfo {
     return {
       flightNumber: flight.flightNumber,
@@ -70,4 +79,5 @@ export interface IFlight {
       EC: flight.totalPriceEconomyClassicPrice,
     };
   }
+
   

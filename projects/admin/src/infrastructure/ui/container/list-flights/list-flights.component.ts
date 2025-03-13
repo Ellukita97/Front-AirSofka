@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { GetFlightsUsecase } from '../../../../application/get-flights.usecase';
 import { Observable } from 'rxjs';
-import { IFlight, IFlightRequest } from '../../../../domain/model/flight.model';
+import { IFlight, IFlightRequest, IFlightUpdate } from '../../../../domain/model/flight.model';
 import { AsyncPipe } from '@angular/common';
 import { TableFlightComponent } from '../../components/table-flight/table-flight.component';
 import { RemoveFlightUsecase } from '../../../../application/remove-flight.usecase';
@@ -37,5 +37,10 @@ export class ListFlightsComponent {
     this.__useCaseAddFlight.execute(flight);
     console.log(flight);
     
+  }
+  updateFlight(flight: IFlightUpdate) {
+    console.log(flight);
+    
+    // this.__useCaseUpdateFlight.execute(flight);
   }
 }

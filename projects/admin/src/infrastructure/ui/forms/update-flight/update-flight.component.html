@@ -1,13 +1,21 @@
-<form [formGroup]="formGroup" (ngSubmit)="submit()">
-    @if(flightRequest){
-    <lib-base-form [model]="flightRequest" [labelsMap]="customLabels" [formGroup]="formGroup"></lib-base-form>
-    }
-    <div class="order-form__group">
+@if (flightRequest) {
+    <form [formGroup]="formGroup" (ngSubmit)="submit()">
+      <lib-base-form
+        [model]="flightRequest"
+        [labelsMap]="customLabels"
+        [formGroup]="formGroup"
+      >
+      </lib-base-form>
+  
+      <div class="order-form__group">
         <label for="departureTime" class="order-form__label">Hora de Salida:</label>
         <input id="departureTime" type="datetime-local" formControlName="departureTime" class="order-form__input" />
-    </div>
-    <div class="order-form__group">
+      </div>
+  
+      <div class="order-form__group">
         <label for="arrivalTime" class="order-form__label">Hora de Llegada:</label>
         <input id="arrivalTime" type="datetime-local" formControlName="arrivalTime" class="order-form__input" />
-    </div>
-</form>
+      </div>
+    </form>
+  }
+  

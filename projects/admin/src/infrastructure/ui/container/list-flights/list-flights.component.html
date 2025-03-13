@@ -3,6 +3,7 @@
     [dataFlight]="flights$ | async"
     (removedFlight)="removeFlight($event)"
     (createdFlight)="createFlights($event)"
+    (updatedFlight)="updateFlight($event)"
     >
     
 </lib-table-flight>
