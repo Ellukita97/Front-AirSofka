@@ -17,25 +17,16 @@ export const authRoutes: Routes = [
                 path: '',
                 component: SidebarComponent,
                 outlet: 'header'
+            },
+            {
+                path: 'login',
+                component: LoginContainerComponent
+            },
+            {
+                path: 'register',
+                component: RegisterContainerComponent
             }
         ],
     },
-    {
-        path: 'login',
-        children: [
-            {
-                path: '',
-                component: LoginContainerComponent,
-            }
-        ]
-    },
-    {
-        path:'register',
-        children: [
-            {
-                path: '',
-                component:  RegisterContainerComponent
-            }
-        ]
-    }
+    
 ]

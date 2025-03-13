@@ -27,7 +27,7 @@ export class RegisterContainerComponent implements OnInit, OnDestroy{
   handleSubmit(user: IUser){
     this.createUserUseCase.execute(user).subscribe({
       next: () => {
-        this.router.navigate(['login']);
+        this.router.navigate(['users/login']);
       },
       error: (err) => {
         console.error(err);
