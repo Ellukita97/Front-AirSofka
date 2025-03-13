@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, effect, Input, OnInit, signal } from '@angular/core';
 import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
-import { BarChartSeries } from '../../../../domain/model/bar-series-model';
+import { ChartSeries } from '../../../../domain/model/chart-series-model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,27 +11,36 @@ import { Observable } from 'rxjs';
 })
 export class BarChartComponent implements OnInit {
 
- // @Input() barData: Observable<BarChartSeries>;
+ @Input() barData: Observable<ChartSeries>;
+  chartOptions = {};
+  confirmed = signal<number>(0);
+  canceled= signal<number>(0);
+  pending= signal<number>(0);
 
-  confirmed: number = 0;
-  canceled: number = 0;
-  pending: number = 0;
-  ngOnInit(): void {
-/*     this.barData.subscribe(values => {
-      this.confirmed = values.confirmed;
-      this.canceled = values.canceled;
-      this.pending = values.pending;
-    }) */
+  constructor(){
+    effect(() => {
+      if(this.barData){
+        this.chartOptions = {
+          animationEnabled: true,
+          data: [{
+          type: "column",
+          color: "#0032a0",
+          dataPoints: [
+          { label: "Emitido",  y: this.confirmed() },
+          { label: "Cancelado", y: this.canceled() },
+          { label: "Pendiente", y: this.pending() },
+          ]}]
+          };
+      }
+    })
   }
-  chartOptions = {
-    theme: "light2",
-	  data: [{
-		type: "column",
-		dataPoints: [
-		{ label: "Emitido",  y: 5 },
-		{ label: "Cancelado", y: 10  },
-		{ label: "Pendiente", y: 20 },
-		]}]
-    };
+  ngOnInit(): void {
+    this.barData.subscribe(values => {
+      this.confirmed.set(values.confirmed);
+      this.canceled.set(values.canceled);
+      this.pending.set(values.pending);
+    })
+
+  }
 
 }

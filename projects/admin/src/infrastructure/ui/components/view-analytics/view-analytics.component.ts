@@ -5,6 +5,8 @@ import { AnaliticalCard } from '../../../../domain/model/analitical-card-model';
 import { CommonModule } from '@angular/common';
 import { IReservationData } from '../../../../domain/model/reservation.model';
 import { CanvasCardComponent } from "../canvas-card/canvas-card.component";
+import { ChartSeries } from '../../../../domain/model/chart-series-model';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'lib-view-analytics',
@@ -29,6 +31,7 @@ export class ViewAnalyticsComponent {
   pending = signal<number>(0);
 
   cards = signal<AnaliticalCard[]>([]);
+  chartMetrics = new BehaviorSubject<ChartSeries>({} as ChartSeries);
   calculateTotals() {
     if (this.bookings) {
       this.totalBookings.set(this.bookings.length);
@@ -38,13 +41,28 @@ export class ViewAnalyticsComponent {
     }
   }
 
-  defineStatus(){
-  /*   this.bookings.forEach(b => {
-      if(b.status.toLowerCase() === 'confirmed'){
-        this.confirmed.update(value => value++);
-      }
-    }) */
+  defineStatus() {
+    this.confirmed.set(0);
+    this.canceled.set(0);
+    this.pending.set(0);
 
+    this.bookings.forEach((b) => {
+      const status = b.status.toLowerCase();
+      if (status === 'confirmed') {
+        this.confirmed.update((value) => value + 1);
+      } else if (status === 'cancelled') {
+        this.canceled.update((value) => value + 1);
+      } else if (status === 'pending') {
+        this.pending.update((value) => value + 1);
+      }
+    });
+
+    this.chartMetrics.next({
+      confirmed: this.confirmed(),
+      canceled: this.canceled(),
+      pending: this.pending(),
+      bookings: this.totalBookings()
+    })
   }
   get bookings(): IReservationData[] {
     return this._bookings;

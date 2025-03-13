@@ -6,5 +6,6 @@
 </section>
 
 <section class="charts">
-  <lib-canvas-card chartHeader="reservas por estado" />
+  <lib-canvas-card chartHeader="reservas por estado" [chartData]="chartMetrics" isBar="true" />
+  <lib-canvas-card chartHeader="distribucion de estados" [chartData]="chartMetrics" isBar="false" />
 </section>
