@@ -4,8 +4,8 @@ import { NewDestinyComponent } from '../../components/new-destiny/new-destiny.co
 import { BestFlightsComponent } from '../../components/best-flights/best-flights.component';
 import { RecomendationsSectionComponent } from '../../components/recomendations-section/recomendations-section.component';
 import { PromptionsSectionComponent } from '../../components/promptions-section/promptions-section.component';
-import { FormGroup } from '@angular/forms';
 import { FormUseCase } from '../../../../application/form.usecase';
+import { IFormFlight } from '../../../../domain/model/flight.model';
 
 @Component({
   selector: 'lib-home',
@@ -21,16 +21,15 @@ import { FormUseCase } from '../../../../application/form.usecase';
 export class HomeComponent implements OnInit, OnDestroy {
   private readonly _formUsecase = inject(FormUseCase);
 
-  dataForm: FormGroup = new FormGroup({});
+  dataForm: IFormFlight;
 
-  handleFormSubmit(data: FormGroup) {
+  handleFormSubmit(data: IFormFlight) {
     this.dataForm = data;
     this._formUsecase.execute(this.dataForm);
   }
 
   ngOnInit() {
     this._formUsecase.initSubscriptions();
-    this._formUsecase.viewForm();
   }
 
   ngOnDestroy() {
