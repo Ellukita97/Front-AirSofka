@@ -2,7 +2,7 @@ export interface IFlight {
   flightId: string;
   flightNumber: string;
   aircraftModel: string;
-  duration: Date;
+  duration: number;
   operatingAirline: string;
   origin: string;
   destination: string;
@@ -17,7 +17,7 @@ export interface IFlightSelected {
   flightId: string;
   flightNumber: string;
   aircraftModel: string;
-  duration: Date;
+  duration: number;
   operatingAirline: string;
   origin: { name: string; abbreviation: string; airport: string };
   destination: { name: string; abbreviation: string; airport: string };
@@ -83,5 +83,5 @@ export interface ITotalPricesInfo {
   economicPriceTotal: number;
   favorablePriceTotal: number;
   executiveTotalPrice: number;
-  executiveFullPriceTotal: number;
+  executiveFullTotalPrice: number;
 }

@@ -3,7 +3,11 @@ import { FlightTypeComponent } from '../../components/flight-type/flight-type.co
 import { FlightsComponent } from '../../components/flights/flights.component';
 import { FormUseCase } from '../../../../application/form.usecase';
 import { Observable } from 'rxjs';
-import { IFlight, IFlightSelected, IFormFlight } from '../../../../domain/model/flight.model';
+import {
+  IFlight,
+  IFlightSelected,
+  IFormFlight,
+} from '../../../../domain/model/flight.model';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { GetFlightsUsecase } from '../../../../application/flight/get-flights.usecase';
 import { Router } from '@angular/router';
@@ -11,7 +15,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'lib-flight-selection',
   imports: [FlightTypeComponent, FlightsComponent, AsyncPipe, NgIf],
-  templateUrl: './flight-selection.component.html'
+  templateUrl: './flight-selection.component.html',
 })
 export class FlightSelectionComponent implements OnInit, OnDestroy {
   private readonly _formUsecase = inject(FormUseCase);
@@ -21,6 +25,7 @@ export class FlightSelectionComponent implements OnInit, OnDestroy {
   public form$: Observable<IFormFlight>;
   public flightsOrigin$: Observable<IFlight[]>;
   public flightsDestination$: Observable<IFlight[]>;
+  public flights$: Observable<IFlight[]>;
 
   ngOnInit() {
     this._formUsecase.initSubscriptions();
@@ -48,6 +53,8 @@ export class FlightSelectionComponent implements OnInit, OnDestroy {
       date: this._formUsecase.spanshot()?.dates?.return,
     });
 
+    this.flights$ = this._getFlightsUsecase.flightsOrigin$();
+
     this._formUsecase.viewForm();
     this.form$ = this._formUsecase.form$();
     this.flightsOrigin$ = this._getFlightsUsecase.flightsOrigin$();
@@ -67,24 +74,27 @@ export class FlightSelectionComponent implements OnInit, OnDestroy {
   flightOriginSelected: IFlightSelected;
   flightReturnSelected: IFlightSelected;
 
-  onFlightSelected(selectedFlight: { 
-    price: number, 
-    flightNumber: string, 
-    origin: {name: string, abbreviation: string, airport: string,}, 
-    destination: {name: string, abbreviation: string, airport: string,},
+  onFlightSelected(selectedFlight: {
+    price: number;
+    flightNumber: string;
+    origin: { name: string; abbreviation: string; airport: string };
+    destination: { name: string; abbreviation: string; airport: string };
   }) {
-    this.flightsOrigin$.subscribe(flights => {
-      const flight = flights.find(f => f.flightNumber === selectedFlight.flightNumber);
+    this.flights$.subscribe((flights) => {
+      const flight = flights.find(
+        (f) => f.flightNumber === selectedFlight.flightNumber
+      );
       if (!flight) return;
-  
+
       const taxMapping = {
         [flight.totalPricesInfo.standardPriceTotal]: flight.tax.standardTax,
         [flight.totalPricesInfo.economicPriceTotal]: flight.tax.economicTax,
         [flight.totalPricesInfo.favorablePriceTotal]: flight.tax.favorableTax,
         [flight.totalPricesInfo.executiveTotalPrice]: flight.tax.executiveTax,
-        [flight.totalPricesInfo.executiveFullPriceTotal]: flight.tax.executiveFullTax,
+        [flight.totalPricesInfo.executiveFullTotalPrice]:
+          flight.tax.executiveFullTax,
       };
-  
+
       const flightSelected: IFlightSelected = {
         flightId: flight.flightId,
         flightNumber: flight.flightNumber,
@@ -95,38 +105,32 @@ export class FlightSelectionComponent implements OnInit, OnDestroy {
         destination: selectedFlight.destination,
         departureTime: flight.departureTime,
         arrivalTime: flight.arrivalTime,
-        tax: taxMapping[selectedFlight.price] ?? 0, 
+        tax: taxMapping[selectedFlight.price] ?? 0,
         prices: selectedFlight.price - taxMapping[selectedFlight.price],
         totalPricesInfo: selectedFlight.price,
       };
-  
+
       if (this.flightPhase === 'ida') {
         this.flightOriginSelected = flightSelected;
-        this._getFlightsUsecase.saveFlightOriginSelected(this.flightOriginSelected);
+        this._getFlightsUsecase.saveFlightOriginSelected(
+          this.flightOriginSelected
+        );
         this._getFlightsUsecase.viewFlightOriginSelected();
-        this.flightPhase = 'regreso'; 
+        this.flightPhase = 'regreso';
+        this.flights$ = this._getFlightsUsecase.flightsDestination$();
       } else {
-        this.flightReturnSelected = {
-          ...flightSelected,
-          origin: this.flightOriginSelected.destination, 
-          destination: this.flightOriginSelected.origin, 
-        };
-        this._getFlightsUsecase.saveFlightDestinationSelected(this.flightReturnSelected);
+        this.flightReturnSelected = flightSelected;
+        this._getFlightsUsecase.saveFlightDestinationSelected(
+          this.flightReturnSelected
+        );
         this._getFlightsUsecase.viewFlightDestinationSelected();
-
-        this._formUsecase.execute({
-          ...this._formUsecase.spanshot(), 
-          origin: this.flightReturnSelected.origin, 
-          destination: this.flightReturnSelected.destination
-        });
 
         this.router.navigate(['/']);
       }
-  
+
       this.reloadFlights();
     });
   }
-  
 
   private reloadFlights() {
     this.showFlights = false;

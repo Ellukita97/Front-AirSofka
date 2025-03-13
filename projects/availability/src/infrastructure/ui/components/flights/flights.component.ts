@@ -10,8 +10,7 @@ import { IFlight, IFlightSelected, IFormFlight } from '../../../../domain/model/
 })
 export class FlightsComponent {
   @Input() public form!: IFormFlight;
-  @Input() public flightsOrigin!: IFlight[];
-  @Input() public flightsDestination!: IFlight[];
+  @Input() public flights!: IFlight[];
 
   @Output() public selectedFlight = new EventEmitter<{
     price: number,

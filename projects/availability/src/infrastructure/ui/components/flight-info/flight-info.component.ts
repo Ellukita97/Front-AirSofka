@@ -15,7 +15,7 @@ export class FlightInfoComponent implements OnInit {
   @Input() public flightNumber!: string;
   @Input() public departureTime!: Date;
   @Input() public arrivalTime!: Date;
-  @Input() public duration!: Date;
+  @Input() public duration!: number;
   @Input() public standardTotalPrice!: number;
   @Input() public executiveTotalPrice!: number;
   @Input() public totalPricesInfo!: ITotalPricesInfo;
@@ -119,7 +119,7 @@ export class FlightInfoComponent implements OnInit {
       {
         type: 'Ejecutiva Full',
         description: 'Máxima flexibilidad y Comodidad',
-        price: this.totalPricesInfo?.executiveFullPriceTotal,
+        price: this.totalPricesInfo?.executiveFullTotalPrice,
         conditions: [
           { icon: 'check.svg', text: '2 equipajes en bodega (32kg)', alt: 'Check' },
           { icon: 'check.svg', text: 'Preselección de todos los asientos', alt: 'Check' },
