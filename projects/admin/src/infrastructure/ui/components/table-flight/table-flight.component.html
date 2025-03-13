@@ -2,9 +2,9 @@
     <div class="card__header">
         <h2 class="card__title">Vuelos</h2>
 
-        <lib-modal class="card__button-add" [title]="'¿Estas seguro que quieres emitir?'" [actionText]="'Agregar Vuelo'"
+        <lib-modal class="card__button-add" [title]="'Formulario para crear Vuelo'" [actionText]="'Agregar Vuelo'"
             (onConfirm)="confirma()" (onCancel)="cancel()" [variant]="'tertiary'">
-
+            <lib-create-flight #createFlight></lib-create-flight>
         </lib-modal>
     </div>
     <table class="card__table styled-table">
@@ -60,3 +60,4 @@
         </tbody>
     </table>
 </div>
+

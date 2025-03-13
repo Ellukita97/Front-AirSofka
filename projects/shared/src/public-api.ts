@@ -9,4 +9,5 @@ export { LogoComponent } from './infrastructure/ui/components/logo/logo.componen
 export type { INavRouter } from './domain/model/navRouter.model';
 export {ModalComponent} from './infrastructure/ui/components/modal/modal.component';
 export {environment} from './environments/enviroment';
+export {BaseFormComponent} from './infrastructure/ui/forms/base-form/base-form.component';
 
