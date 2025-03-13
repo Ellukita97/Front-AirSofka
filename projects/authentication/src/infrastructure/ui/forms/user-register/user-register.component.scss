@@ -69,8 +69,50 @@
     }
 
     &__button{
-        @include mixins.button-base;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        color: #000;
+        border: none;
+        border-radius: 10px;
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom: 1rem;
+        text-decoration: none;
+        padding: 0.8rem;
+        font-weight: bold;
+        &:hover{
+            background-color: #ebe5e5;
+        }
     }
 
 
 }
+
+.google-login-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 1rem;
+    text-decoration: none;
+    padding: 0.8rem;
+    font-weight: bold;
+
+    &__image{
+      width: 20px;
+      height: 20px;
+      margin-right: 0.5rem;
+    }
+  }
+  .google-login-button:hover {
+    background-color: #ebe5e5;
+  }
