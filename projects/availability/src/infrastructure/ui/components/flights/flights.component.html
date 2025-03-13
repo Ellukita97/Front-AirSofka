@@ -26,7 +26,17 @@
     </div>
   </div>
 
-
-  <lib-flight-info></lib-flight-info>
-  <lib-flight-info></lib-flight-info>
+  @for (flight of flightsOrigin; track $index) {
+    <lib-flight-info 
+      [form]="form"
+      [flightNumber]="flight.flightNumber"
+      [departureTime]="flight.departureTime"
+      [arrivalTime]="flight.arrivalTime"
+      [duration]="flight.duration"
+      [standardTotalPrice]="flight.totalPricesInfo.standardPriceTotal"
+      [executiveTotalPrice]="flight.totalPricesInfo.executiveTotalPrice"
+      [totalPricesInfo]="flight.totalPricesInfo"
+      (onFlightSelected)="onFlightSelected($event)"
+    ></lib-flight-info>
+  }
 </section>

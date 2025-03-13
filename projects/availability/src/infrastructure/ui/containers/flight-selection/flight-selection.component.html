@@ -1,2 +1,13 @@
-<lib-flight-type></lib-flight-type>
-<lib-flights></lib-flights>
+<lib-flight-type 
+  [text]="flightPhase"
+  [form]="form$ | async"
+  ></lib-flight-type>
+
+<ng-container *ngIf="showFlights">
+  <lib-flights 
+    [form]="form$ | async"
+    [flightsOrigin]="flightsOrigin$ | async"
+    [flightsDestination]="flightsDestination$ | async"
+    (selectedFlight)="onFlightSelected($event)"
+  ></lib-flights>
+</ng-container>

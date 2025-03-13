@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, EventEmitter, input, Output } from '@angular/core';
 import { Item } from '../../../../domain/model/card.model';
 import { CommonModule } from '@angular/common';
 
@@ -11,8 +11,14 @@ import { CommonModule } from '@angular/common';
 export class ClassCardComponent {
   public type = input<string>();
   public description = input<string>();
-  public price = input<string>();
+  public price = input<number>();
   public conditions = input<Item[]>();
   public others = input<Item[]>();
   public colorHeader = input<string>();
+
+  @Output() public onSelect = new EventEmitter<{price: number}>();
+
+  selectCard() {
+    this.onSelect.emit({price: this.price()});
+  }
 }

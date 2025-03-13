@@ -7,7 +7,7 @@ export interface Item {
 export interface ClassCardData {
   type: string;
   description: string;
-  price: string;
+  price: number;
   conditions: Item[];
   others: Item[];
   colorHeader: string;

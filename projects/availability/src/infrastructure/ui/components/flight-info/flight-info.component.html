@@ -1,21 +1,21 @@
 <section class="flight">
   <div class="flight__detail">
     <header class="flight__detail-header">
-      <span>CM 398 · CM 366</span>
+      <span>{{flightNumber}}</span>
     </header>
 
     <main class="flight__detail-main">
       <div class="flight__detail-main-hours">
-        <span>09:15 am</span>
+        <span>{{departureTime | date:'hh:mm a'}}</span>
         <div class="flight__detail-main-hours-line"></div>
-        <span class="flight__detail-main-hours-time">09h 05m</span>
+        <span class="flight__detail-main-hours-time">{{duration | date:'HH \'h\' mm \'m\''}}</span>
         <div class="flight__detail-main-hours-line"></div>
-        <span>07:20 pm</span>
+        <span>{{arrivalTime | date:'hh:mm a'}}</span>
       </div>
 
       <div class="flight__detail-main-cities">
-        <span>Medellin(MDE)</span>
-        <span>Bogotá(BOG)</span>
+        <span>{{form?.origin?.name}}({{form?.origin?.abbreviation}})</span>
+        <span>{{form?.destination?.name}}({{form?.destination?.abbreviation}})</span>
       </div>
     </main>
 
@@ -32,7 +32,7 @@
       <div class="flight__class-line"></div>
       <div class="flight__class-info">
         <h2 class="flight__class-title">Desde</h2>
-        <span class="flight__class-price">1.165.662 COP</span>
+        <span class="flight__class-price">{{standardTotalPrice | currency:'COP':'code':'1.0-0'}}</span>
         <h2 class="flight__class-title">Ida · Por adulto</h2>
       </div>
     </button>
@@ -43,7 +43,7 @@
       <div class="flight__class-line flight__class-line--dark"></div>
       <div class="flight__class-info">
         <h2 class="flight__class-title">Desde</h2>
-        <span class="flight__class-price">2.637.685 COP</span>
+        <span class="flight__class-price">{{executiveTotalPrice | currency:'COP':'code':'1.0-0'}}</span>
         <h2 class="flight__class-title">Ida · Por adulto</h2>
       </div>
     </button>
@@ -58,8 +58,9 @@
       [price]="card.price"
       [conditions]="card.conditions"
       [others]="card.others"
-      [colorHeader]="card.colorHeader">
-    </lib-class-card>
+      [colorHeader]="card.colorHeader"
+      (onSelect)="onCardSelected($event)"
+    ></lib-class-card>
   }
 
   <div class="class-info">
@@ -84,8 +85,9 @@
       [price]="card.price"
       [conditions]="card.conditions"
       [others]="card.others"
-      [colorHeader]="card.colorHeader">
-    </lib-class-card>
+      [colorHeader]="card.colorHeader"
+      (onSelect)="onCardSelected($event)"
+    ></lib-class-card>
   }
 
   <div class="class-info">
