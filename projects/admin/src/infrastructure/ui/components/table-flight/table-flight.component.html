@@ -4,7 +4,7 @@
 
         <lib-modal class="card__button-add" [title]="'Formulario para crear Vuelo'" [actionText]="'Agregar Vuelo'"
             (onConfirm)="confirma()" (onCancel)="cancel()" [variant]="'tertiary'">
-            <lib-create-flight #createFlight></lib-create-flight>
+            <lib-create-flight #createFlight (createFlight)="createFlights($event)" ></lib-create-flight>
         </lib-modal>
     </div>
     <table class="card__table styled-table">

@@ -1,8 +1,16 @@
 import { CommonModule, CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, EventEmitter, input, Output, output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  input,
+  Output,
+  output,
+  ViewChild,
+} from '@angular/core';
 import {
   IFlight,
   IFlightInfo,
+  IFlightRequest,
   mapFlightToRequest,
 } from '../../../../domain/model/flight.model';
 import { ModalComponent } from 'shared';
@@ -10,7 +18,7 @@ import { CreateFlightComponent } from '../../forms/create-flight/create-flight.c
 
 @Component({
   selector: 'lib-table-flight',
-  imports: [CurrencyPipe, DatePipe, ModalComponent,CreateFlightComponent],
+  imports: [CurrencyPipe, DatePipe, ModalComponent, CreateFlightComponent],
   templateUrl: './table-flight.component.html',
   styleUrl: './table-flight.component.scss',
 })
@@ -23,15 +31,19 @@ export class TableFlightComponent {
   public deleteClient = output<string>();
   public flightRequests: IFlightInfo[] = [];
   @Output() removedFlight = new EventEmitter<string>();
-  @ViewChild(CreateFlightComponent) createFlightComponent!: CreateFlightComponent;
+  @Output() createdFlight = new EventEmitter<IFlightRequest>();
+  @ViewChild(CreateFlightComponent)
+  createFlightComponent!: CreateFlightComponent;
+  public createOrderData = output<IFlightRequest>();
 
   get columnKeys(): string[] {
     if (this.dataFlight) {
       this.flightRequests = this.mapFlightsToRequests(this.dataFlight());
     }
-    return this.flightRequests.length > 0? Object.keys(this.flightRequests[0]): [];
+    return this.flightRequests.length > 0
+      ? Object.keys(this.flightRequests[0])
+      : [];
   }
-
   mapFlightsToRequests(flights: IFlight[]): IFlightInfo[] {
     return flights.map(mapFlightToRequest);
   }
@@ -39,12 +51,15 @@ export class TableFlightComponent {
   removeFlight(flightId: string) {
     this.removedFlight.emit(this.findFlight(flightId));
   }
+  createFlights(flight: IFlightRequest) {
+    this.createdFlight.emit(flight);
+  }
 
   confirma() {
-    console.log("asdadasdasd");
-    
+    console.log('asdadasdasd');
+
     if (this.createFlightComponent) {
-      this.createFlightComponent.submit(); 
+      this.createFlightComponent.submit();
     }
   }
   cancel() {
@@ -52,7 +67,9 @@ export class TableFlightComponent {
   }
 
   findFlight(flightNumber: string): string | null {
-    const flight = this.dataFlight().find(flight => flight.flightNumber === flightNumber);
+    const flight = this.dataFlight().find(
+      (flight) => flight.flightNumber === flightNumber
+    );
     return flight ? flight.flightId : null;
   }
 }

@@ -1,4 +1,8 @@
 
-<lib-table-flight [dataFlight]="flights$ | async" (removedFlight)="removeFlight($event)">
+<lib-table-flight 
+    [dataFlight]="flights$ | async"
+    (removedFlight)="removeFlight($event)"
+    (createdFlight)="createFlights($event)"
+    >
     
 </lib-table-flight>

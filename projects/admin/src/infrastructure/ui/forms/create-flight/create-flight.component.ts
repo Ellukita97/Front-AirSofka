@@ -10,7 +10,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './create-flight.component.scss'
 })
 export class CreateFlightComponent {
-  @Output() createOrder = new EventEmitter<IFlightRequest>();
+  @Output() createFlight = new EventEmitter<IFlightRequest>();
   flightRequest: IFlightRequest = {
     flightNumber: 'ABC123',
     flightModel: 'Boeing 747',
@@ -39,7 +39,7 @@ public formGroup = this.formBuilder.group({
 
 submit() {
   if(this.formGroup.valid){
-  this.createOrder.emit(this.formGroup.value as unknown as IFlightRequest);
+  this.createFlight.emit(this.formGroup.value as unknown as IFlightRequest);
   console.log("se paso todo bien");
   this.formGroup.reset();
   }
