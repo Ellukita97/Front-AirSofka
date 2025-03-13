@@ -21,10 +21,6 @@ export class SidenavComponent {
       path: '/admin/view'
     },
     {
-      title: 'Resumen',
-      path: '/admin/summary'
-    },
-    {
       title: 'Reservas',
       path: '/admin/booking'
     }
