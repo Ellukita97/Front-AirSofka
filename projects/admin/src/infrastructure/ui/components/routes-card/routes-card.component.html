@@ -1,13 +1,41 @@
 @for (route of routes; track route.origin) {
-<div class="card">
-  <div class="card__info">
-    <p class="card__origin">Origen: {{ route.origin }}</p>
-    <p class="card__destination">Destino: {{ route.destination }}</p>
-    <p class="card__duration">Duración: {{ route.duration }} horas</p>
+  <div class="card">
+    <div class="card__info">
+      <p class="card__origin">Origen: {{ route.origin }}</p>
+      <p class="card__destination">Destino: {{ route.destination }}</p>
+      <p class="card__duration">Duración: {{ route.duration }} horas</p>
+    </div>
+    <div class="card__actions">
+      <button class="card__button card__button--edit" (click)="openEditModal(route)">Editar</button>
+      <button class="card__button card__button--delete" (click)="openDeleteModal(route)">Eliminar</button>
+    </div>
   </div>
-  <div class="card__actions">
-    <button class="card__button card__button--edit">Editar</button>
-    <button class="card__button card__button--delete">Eliminar</button>
-  </div>
-</div>
 }
+
+<!-- Modal para Editar -->
+<lib-modal
+  *ngIf="selectedRoute"
+  [title]="'Editar Ruta'"
+  [confirmText]="'Guardar'"
+  [cancelText]="'Cancelar'"
+  (onConfirm)="editRoute()"
+  (onCancel)="closeModal()"
+>
+  <div class="modal__content">
+    <p>¿Estás seguro de que deseas editar la ruta de <strong>{{ selectedRoute.origin }}</strong> a <strong>{{ selectedRoute.destination }}</strong>?</p>
+  </div>
+</lib-modal>
+
+<!-- Modal para Eliminar -->
+<lib-modal
+  *ngIf="selectedRoute"
+  [title]="'Eliminar Ruta'"
+  [confirmText]="'Eliminar'"
+  [cancelText]="'Cancelar'"
+  (onConfirm)="deleteRoute()"
+  (onCancel)="closeModal()"
+>
+  <div class="modal__content">
+    <p>¿Estás seguro de que deseas eliminar la ruta de <strong>{{ selectedRoute.origin }}</strong> a <strong>{{ selectedRoute.destination }}</strong>?</p>
+  </div>
+</lib-modal>
