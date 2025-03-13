@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IFlight } from '../../../../domain/model/flight.model';
 import { AsyncPipe } from '@angular/common';
 import { TableFlightComponent } from '../../components/table-flight/table-flight.component';
+import { RemoveFlightUsecase } from '../../../../application/remove-flight.usecase';
 
 @Component({
   selector: 'lib-list-flights',
@@ -12,6 +13,8 @@ import { TableFlightComponent } from '../../components/table-flight/table-flight
 })
 export class ListFlightsComponent {
   private readonly __useCaseList = inject(GetFlightsUsecase);
+  private readonly __useCaseRemoveFlight = inject(RemoveFlightUsecase);
+
   public flights$: Observable<IFlight[]>;
   ngOnInit(): void {
     this.__useCaseList.initSubscriptions();
@@ -23,5 +26,9 @@ export class ListFlightsComponent {
 
   ngOnDestroy(): void {
     this.__useCaseList.destroySubscriptions();
+  }
+
+  removeFlight(flightId: string) {
+    this.__useCaseRemoveFlight.execute(flightId);
   }
 }

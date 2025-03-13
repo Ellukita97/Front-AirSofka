@@ -1,5 +1,5 @@
 import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, EventEmitter, input, Output, output } from '@angular/core';
 import {
   IFlight,
   IFlightInfo,
@@ -14,29 +14,29 @@ import { ModalComponent } from 'shared';
   styleUrl: './table-flight.component.scss',
 })
 export class TableFlightComponent {
+  images = [
+    'admin/form-svgrepo-com.svg#icon-delete',
+    'admin/form-svgrepo-com.svg#icon-update',
+  ];
+
   public dataFlight = input.required<IFlight[]>();
   public deleteClient = output<string>();
   public flightRequests: IFlightInfo[] = [];
+  @Output() removedFlight = new EventEmitter<string>();
 
   get columnKeys(): string[] {
     if (this.dataFlight) {
       this.flightRequests = this.mapFlightsToRequests(this.dataFlight());
     }
-    return this.flightRequests.length > 0
-      ? Object.keys(this.flightRequests[0])
-      : [];
+    return this.flightRequests.length > 0? Object.keys(this.flightRequests[0]): [];
   }
 
-  images = [
-    'admin/form-svgrepo-com.svg#icon-delete',
-    'admin/form-svgrepo-com.svg#icon-update',
-  ];
+
   mapFlightsToRequests(flights: IFlight[]): IFlightInfo[] {
     return flights.map(mapFlightToRequest);
   }
   removeFlight(flightId: string) {
-    console.log(flightId);
-    console.log(this.findFlight(flightId));
+    this.removedFlight.emit(this.findFlight(flightId));
   }
   confirma() {
     console.log('Confirmar');
@@ -45,9 +45,8 @@ export class TableFlightComponent {
     console.log('Confirmar');
   }
 
-  findFlight(flightId: string) {
-    return this.dataFlight().filter((flight) =>
-      flight.flightNumber === flightId ? flight.flightId : null
-    );
+  findFlight(flightNumber: string): string | null {
+    const flight = this.dataFlight().find(flight => flight.flightNumber === flightNumber);
+    return flight ? flight.flightId : null;
   }
 }
