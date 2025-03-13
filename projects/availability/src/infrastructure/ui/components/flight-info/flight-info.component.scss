@@ -130,6 +130,54 @@
           }
         }
       }
+
+      &.selected-economic {
+        background-color: variables.$blue;
+        color: variables.$white;
+
+        .flight__class-line {
+          border-color: transparent;
+          position: relative;
+
+          &::before {
+            content: "Económica";
+            position: absolute;
+            color: variables.$white;
+            font-size: 1.4rem;
+            transform: translate(-50%, -50%);
+            font-weight: 600;
+          }
+        }
+
+        h2,
+        span {
+          color: variables.$white;
+        }
+      }
+
+      &.selected-executive {
+        background-color: #072241;
+        color: variables.$white;
+
+        .flight__class-line {
+          border-color: transparent;
+          position: relative;
+
+          &::before {
+            content: "Ejecutiva";
+            position: absolute;
+            color: variables.$white;
+            font-size: 1.4rem;
+            transform: translate(-50%, -50%);
+            font-weight: 600;
+          }
+        }
+
+        h2,
+        span {
+          color: variables.$white;
+        }
+      }
     }
 
     &-line {
@@ -164,129 +212,42 @@
 }
 
 .class {
-  width: 100%;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  gap: 10px;
-  padding-bottom: 20px;
-}
+  gap: 15px;
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease-in-out, height 0.3s ease-in-out;
 
-.class-card {
-  @include mixins.typography-base;
-  height: 450px;
-  flex: 1;
-  min-width: 250px;
-  background-color: variables.$gray-light-2;
-  border-radius: 8px;
-  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.15);
-
-  &__header {
-    background-color: #0e68ff;
-    display: flex;
-    align-items: center;
-    height: 90px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding: 20px;
-
-    &-icon {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 50px;
-      height: 50px;
-      background-color: rgba(255, 255, 255, 0.205);
-      border-radius: 50%;
-
-      svg {
-        width: 30px;
-        height: 30px;
-      }
-    }
-
-    &-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin-left: 20px;
-
-      h1 {
-        font-size: 1.6rem;
-        font-weight: 600;
-        color: variables.$white;
-      }
-
-      h2 {
-        font-size: 1.4rem;
-        font-weight: 500;
-        color: variables.$white;
-      }
-    }
+  &.active {
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+    overflow: visible;
   }
 
-  &__main {
-    display: flex;
-    flex-direction: column;
-    padding: 30px 20px;
-    gap: 8px;
-
-    &-price {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      h1 {
-        font-size: 2rem;
-        font-weight: 700;
-      }
-
-      h2 {
-        font-size: 1.4rem;
-        font-weight: 500;
-        color: variables.$gray-dark;
-      }
-    }
-
-    &-info {
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-
-      &-item {
-        display: flex;
-        font-size: 1.35rem;
-        gap: 5px;
-        svg {
-          width: 20px;
-        }
-      }
-
-      &-line {
-        width: 100%;
-        height: 1px;
-        background-color: variables.$gray-light;
-      }
-      
-    }
-  }
-
-  &__footer {
-    padding-inline: 20px;
-    margin-top: 20px;
-
-    &-button {
-      background-color: variables.$blue;
-      color: variables.$white;
-      font-size: 1.4rem;
+  &-info {
+    padding-bottom: 20px;
+    &__title {
+      font-size: 1.6rem;
       font-weight: 600;
-      width: 100%;
-      padding: 10px 20px;
-      border-radius: 20px;
-      border: none;
-      
-      &:hover {
-        cursor: pointer;
-        background-color: variables.$blue-dark;
+      color: variables.$gray-dark;
+    }
+
+    &__list {
+      padding-left: 20px;
+    }
+
+    &__item {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: variables.$gray;
+
+      span {
+        color: variables.$blue-light;
       }
     }
   }
