@@ -4,12 +4,11 @@ import { GetRouteUseCase } from '../../../../application/route/get-route.usecase
 import { IRoute } from '../../../../domain/model/route.model';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'lib-routes-container',
   standalone: true,
-  imports: [RoutesCardComponent, CommonModule, HttpClientModule],
+  imports: [RoutesCardComponent, CommonModule],
   templateUrl: './routes-container.component.html',
 })
 export class RoutesContainerComponent implements OnInit {
