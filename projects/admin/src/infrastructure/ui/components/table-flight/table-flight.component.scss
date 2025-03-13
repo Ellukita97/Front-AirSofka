@@ -30,17 +30,12 @@
     display: flex;
     justify-content: space-between;
   }
-  &__button {
-    background-color: vars.$blue-dark;
-    color: vars.$white;
-    padding: 10px 10px;
-    width: 15%;
-    font-size: 1.5rem;
-    border-radius: 5px;
-    margin-right: 5%;
-    border: none;
-    cursor: pointer;
+  &__button-add{
+    position: relative;
+    left: -5%;
   }
+  
+  
   &__button:hover {
     background-color: vars.$blue;
   }
@@ -108,6 +103,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  &__button--remove{
+    position: relative;
+    left: -2rem;
+    width: 35px;
   }
 }
 

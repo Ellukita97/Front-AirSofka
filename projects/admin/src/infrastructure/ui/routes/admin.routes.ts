@@ -4,7 +4,7 @@ import { ReservaContainerComponent } from '../container/reserva-container/reserv
 import { ListFlightsComponent } from '../container/list-flights/list-flights.component';
 
 export const adminRoutes: Routes = [
-  {
+  { 
     path: '',
     component: AdminLayoutComponent,
     children: [
@@ -18,12 +18,12 @@ export const adminRoutes: Routes = [
       {
         path: 'booking',
         component: ReservaContainerComponent,
-      },
+      }, 
       {
         path: 'flights',
         component: ListFlightsComponent,
       },
-      {
+      {  
         path: '',
         redirectTo: 'view',
         pathMatch: 'full',

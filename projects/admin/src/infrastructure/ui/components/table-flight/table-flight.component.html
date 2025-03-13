@@ -1,9 +1,11 @@
 <div class="card">
     <div class="card__header">
         <h2 class="card__title">Vuelos</h2>
-        <button class="card__button">
-            Agregar vuelo
-        </button>
+
+        <lib-modal class="card__button-add" [title]="'¿Estas seguro que quieres emitir?'" [actionText]="'Agregar Vuelo'"
+            (onConfirm)="confirma()" (onCancel)="cancel()" [variant]="'tertiary'">
+
+        </lib-modal>
     </div>
 
     <table class="card__table styled-table">
@@ -36,8 +38,22 @@
                 }
                 <td class="styled-table__cell actions">
                     <div class="actions__items">
-                        <lib-button-table [icon]="images[0]" [rowIndex]="$index" ariaLabel="Remove"></lib-button-table>
-                        <lib-button-table [icon]="images[1]" [rowIndex]="$index" ariaLabel="Edit"></lib-button-table>
+                        <lib-modal class="actions__button--remove" [title]="'¿Estas seguro que quieres eliminar el vuelo?'"
+                            [actionText]="''" (onConfirm)="removeFlight(item.flightNumber)" (onCancel)="cancel()" [variant]="'noText'">
+                            <svg buttonTable width="30px" height="30px" class="icon"
+                                preserveAspectRatio="xMidYMid meet">
+                                <use [attr.xlink:href]="images[0]"></use>
+                            </svg>
+                        </lib-modal>
+
+                        <lib-modal class="actions__button--remove" [title]="'¿Estas seguro que quieres emitir?'"
+                            [actionText]="''" (onConfirm)="confirma()" (onCancel)="cancel()" [variant]="'noText'">
+                            <svg buttonTable width="30px" height="30px" class="icon"
+                                preserveAspectRatio="xMidYMid meet">
+                                <use [attr.xlink:href]="images[1]"></use>
+                            </svg>
+                        </lib-modal>
+
                     </div>
                 </td>
             </tr>
