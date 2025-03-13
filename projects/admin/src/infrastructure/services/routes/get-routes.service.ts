@@ -13,7 +13,7 @@ export class GetRoutesService {
 
   execute(): Observable<IRoute[]> {
     const headers = this.getHeaders();
-    return this.http.post<IRoute[]>(this.apiUrl, {}, { headers });
+    return this.http.get<IRoute[]>(this.apiUrl, { headers });
   }
 
   private getHeaders() {
