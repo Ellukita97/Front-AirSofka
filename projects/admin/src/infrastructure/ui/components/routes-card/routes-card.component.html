@@ -1,1 +1,7 @@
-<p>routes-card works!</p>
+@for (route of routes; track route.origin) {
+<div>
+  <p>Origen: {{ route.origin }}</p>
+  <p>Destino: {{ route.destination }}</p>
+  <p>Duración: {{ route.duration }} minutos</p>
+</div>
+}

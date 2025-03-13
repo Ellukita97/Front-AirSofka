@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { IRoute } from '../../../../domain/model/route.model';
 
 @Component({
   selector: 'lib-routes-card',
-  imports: [],
   templateUrl: './routes-card.component.html',
-  styleUrl: './routes-card.component.scss',
+  styleUrls: ['./routes-card.component.scss'],
 })
-export class RoutesCardComponent {}
+export class RoutesCardComponent {
+  @Input() routes: IRoute[] = []; // Asegúrate de que la propiedad esté correctamente definida
+}
