@@ -6,8 +6,7 @@
 <ng-container *ngIf="showFlights">
   <lib-flights 
     [form]="form$ | async"
-    [flightsOrigin]="flightsOrigin$ | async"
-    [flightsDestination]="flightsDestination$ | async"
+    [flights]="flights$ | async"
     (selectedFlight)="onFlightSelected($event)"
   ></lib-flights>
 </ng-container>

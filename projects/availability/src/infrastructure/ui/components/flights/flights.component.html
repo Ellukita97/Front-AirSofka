@@ -26,7 +26,7 @@
     </div>
   </div>
 
-  @for (flight of flightsOrigin; track $index) {
+  @for (flight of flights; track $index) {
     <lib-flight-info 
       [form]="form"
       [flightNumber]="flight.flightNumber"
