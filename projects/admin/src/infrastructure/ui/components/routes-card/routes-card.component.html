@@ -1,7 +1,13 @@
 @for (route of routes; track route.origin) {
-<div>
-  <p>Origen: {{ route.origin }}</p>
-  <p>Destino: {{ route.destination }}</p>
-  <p>Duración: {{ route.duration }} minutos</p>
+<div class="card">
+  <div class="card__info">
+    <p class="card__origin">Origen: {{ route.origin }}</p>
+    <p class="card__destination">Destino: {{ route.destination }}</p>
+    <p class="card__duration">Duración: {{ route.duration }} horas</p>
+  </div>
+  <div class="card__actions">
+    <button class="card__button card__button--edit">Editar</button>
+    <button class="card__button card__button--delete">Eliminar</button>
+  </div>
 </div>
 }
