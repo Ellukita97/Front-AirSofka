@@ -19,8 +19,8 @@ export interface IFlightSelected {
   aircraftModel: string;
   duration: Date;
   operatingAirline: string;
-  origin: string;
-  destination: string;
+  origin: { name: string; abbreviation: string; airport: string };
+  destination: { name: string; abbreviation: string; airport: string };
   departureTime: Date;
   arrivalTime: Date;
   tax: number; 

@@ -16,16 +16,16 @@ export class FlightsComponent {
   @Output() public selectedFlight = new EventEmitter<{
     price: number,
     flightNumber: string,
-    origin: string,
-    destination: string
+    origin: {name: string, abbreviation: string, airport: string},
+    destination: {name: string, abbreviation: string, airport: string},
   }>();
 
   onFlightSelected(selectedFlight: {price: number, flightNumber: string}) {
     this.selectedFlight.emit({
       price: selectedFlight.price,
       flightNumber: selectedFlight.flightNumber,
-      origin: this.form.origin.name,
-      destination: this.form.destination.name
+      origin: {...this.form.origin},
+      destination: {...this.form.destination},
     });
   }
 }

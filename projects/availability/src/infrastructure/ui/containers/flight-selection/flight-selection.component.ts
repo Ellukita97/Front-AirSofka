@@ -67,7 +67,12 @@ export class FlightSelectionComponent implements OnInit, OnDestroy {
   flightOriginSelected: IFlightSelected;
   flightReturnSelected: IFlightSelected;
 
-  onFlightSelected(selectedFlight: { price: number, flightNumber: string, origin: string, destination: string }) {
+  onFlightSelected(selectedFlight: { 
+    price: number, 
+    flightNumber: string, 
+    origin: {name: string, abbreviation: string, airport: string,}, 
+    destination: {name: string, abbreviation: string, airport: string,},
+  }) {
     this.flightsOrigin$.subscribe(flights => {
       const flight = flights.find(f => f.flightNumber === selectedFlight.flightNumber);
       if (!flight) return;
@@ -101,9 +106,20 @@ export class FlightSelectionComponent implements OnInit, OnDestroy {
         this._getFlightsUsecase.viewFlightOriginSelected();
         this.flightPhase = 'regreso'; 
       } else {
-        this.flightReturnSelected = flightSelected;
+        this.flightReturnSelected = {
+          ...flightSelected,
+          origin: this.flightOriginSelected.destination, 
+          destination: this.flightOriginSelected.origin, 
+        };
         this._getFlightsUsecase.saveFlightDestinationSelected(this.flightReturnSelected);
         this._getFlightsUsecase.viewFlightDestinationSelected();
+
+        this._formUsecase.execute({
+          ...this._formUsecase.spanshot(), 
+          origin: this.flightReturnSelected.origin, 
+          destination: this.flightReturnSelected.destination
+        });
+
         this.router.navigate(['/']);
       }
   
