@@ -13,7 +13,13 @@ export class UpdateRouteService {
 
   update(route: IRoute): Observable<IRoute> {
     const headers = this.getHeaders();
-    return this.http.put<IRoute>(this.apiUrl, route, { headers });
+    const body = {
+      aggregateId: route.routeId, // Cambia routeId a aggregateId
+      origin: route.origin,
+      duration: route.duration,
+      destination: route.destination,
+    };
+    return this.http.put<IRoute>(this.apiUrl, body, { headers });
   }
 
   private getHeaders() {

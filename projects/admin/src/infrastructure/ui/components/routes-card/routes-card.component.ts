@@ -18,9 +18,20 @@ export class RoutesCardComponent {
       '¿Estás seguro de que deseas editar esta ruta?'
     );
     if (confirmEdit) {
-      this.selectedRoute = route;
-      console.log('Editando ruta:', this.selectedRoute);
-      this.editRoute.emit(route);
+      const newOrigin = prompt('Nuevo origen:', route.origin);
+      const newDuration = prompt('Nueva duración:', route.duration.toString());
+      const newDestination = prompt('Nuevo destino:', route.destination);
+
+      if (newOrigin && newDuration && newDestination) {
+        this.selectedRoute = {
+          ...route,
+          origin: newOrigin,
+          duration: parseInt(newDuration, 10),
+          destination: newDestination,
+        };
+        console.log('Editando ruta:', this.selectedRoute);
+        this.editRoute.emit(this.selectedRoute);
+      }
     }
   }
 
@@ -31,6 +42,7 @@ export class RoutesCardComponent {
     );
     if (confirmDelete) {
       this.selectedRoute = route;
+      console.log('Eliminando ruta:', this.selectedRoute);
       this.deleteRoute.emit(route);
     }
   }

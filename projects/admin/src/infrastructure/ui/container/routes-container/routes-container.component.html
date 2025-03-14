@@ -1,4 +1,5 @@
 <lib-routes-card
   [routes]="routes$ | async"
+  (editRoute)="onEditRoute($event)"
   (deleteRoute)="onDeleteRoute($event)"
 ></lib-routes-card>
