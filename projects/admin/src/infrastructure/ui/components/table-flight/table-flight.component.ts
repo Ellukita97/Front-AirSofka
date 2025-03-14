@@ -18,6 +18,7 @@ import { AdminHeaderComponent, ModalComponent } from 'shared';
 import { CreateFlightComponent } from '../../forms/create-flight/create-flight.component';
 import { UpdateFlightComponent } from '../../forms/update-flight/update-flight.component';
 import { IRoute } from '../../../../domain/model/route.model';
+import { RouteIdFormatPipe } from '../../pipes/routeId.pipe';
 
 @Component({
   selector: 'lib-table-flight',
@@ -27,7 +28,8 @@ import { IRoute } from '../../../../domain/model/route.model';
     ModalComponent,
     CreateFlightComponent,
     UpdateFlightComponent,
-    AdminHeaderComponent
+    AdminHeaderComponent,
+    RouteIdFormatPipe
   ],
   templateUrl: './table-flight.component.html',
   styleUrl: './table-flight.component.scss',

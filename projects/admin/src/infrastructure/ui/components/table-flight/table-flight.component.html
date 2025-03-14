@@ -1,12 +1,12 @@
-
-<lib-admin-header title="Gestión de Vuelos"/>  
+<lib-admin-header title="Gestión de Vuelos" />
 <div class="card">
     <div class="card__header">
         <h2 class="card__title">Vuelos</h2>
 
         <lib-modal class="card__button-add" [title]="'Formulario para crear Vuelo'" [actionText]="'Agregar Vuelo'"
             (onConfirm)="confirma()" (onCancel)="cancel()" [variant]="'tertiary'">
-            <lib-create-flight #createFlight (createFlight)="createFlights($event)" [routes]="dataRoute()"></lib-create-flight>
+            <lib-create-flight #createFlight (createFlight)="createFlights($event)"
+                [routes]="dataRoute()"></lib-create-flight>
         </lib-modal>
     </div>
     <table class="card__table styled-table">
@@ -31,7 +31,11 @@
                     {{ item[key] | date: 'medium' }}
                     }
                     @else{
+                    @if (key === 'routeId') {
+                    {{ item[key] | routeIdFormat }}
+                    }@else{
                     {{item[key]}}
+                    }
                     }
                     }
                 </td>
@@ -53,7 +57,7 @@
                                     preserveAspectRatio="xMidYMid meet">
                                     <use [attr.xlink:href]="images[1]"></use>
                                 </svg>
-                                <lib-update-flight  #updateFlight  form-body  [flightFound]="currentFlight()"
+                                <lib-update-flight #updateFlight form-body [flightFound]="currentFlight()"
                                     (updateFlight)="onUpdateFlight($event)">
                                 </lib-update-flight>
                             </lib-modal>
