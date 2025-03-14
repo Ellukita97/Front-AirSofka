@@ -21,19 +21,14 @@ export class ModalComponent {
 
   toggle() {
     this.visible = !this.visible;
-    this.visible = !this.visible;
   }
 
   confirm() {
     this.onConfirm.emit();
     this.toggle();
-    this.onConfirm.emit();
-    this.toggle();
   }
 
   cancel() {
-    this.onCancel.emit();
-    this.toggle();
     this.onCancel.emit();
     this.toggle();
   }
