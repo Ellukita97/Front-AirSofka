@@ -12,10 +12,11 @@ import {
 import { AsyncPipe, NgIf } from '@angular/common';
 import { GetFlightsUsecase } from '../../../../application/flight/get-flights.usecase';
 import { Router } from '@angular/router';
+import { LoadingComponent } from '../../components/loading/loading.component';
 
 @Component({
   selector: 'lib-flight-selection',
-  imports: [FlightTypeComponent, FlightsComponent, AsyncPipe, NgIf],
+  imports: [FlightTypeComponent, FlightsComponent, LoadingComponent, AsyncPipe, NgIf],
   templateUrl: './flight-selection.component.html',
 })
 export class FlightSelectionComponent implements OnInit, OnDestroy {
@@ -26,6 +27,7 @@ export class FlightSelectionComponent implements OnInit, OnDestroy {
   public form$: Observable<IFormFlight>;
   public flights$: Observable<IFlight[]>;
   public origindestinacion$: Observable<IOriginDestination[]>;
+  public loadingSubject$: Observable<boolean>;
 
   ngOnInit() {
     this._formUsecase.initSubscriptions();
@@ -59,6 +61,7 @@ export class FlightSelectionComponent implements OnInit, OnDestroy {
     });
 
     this.flights$ = this._getFlightsUsecase.flightsOrigin$();
+    this.loadingSubject$ = this._getFlightsUsecase.loadingSubject$();
 
     this._formUsecase.viewForm();
     this.form$ = this._formUsecase.form$();
