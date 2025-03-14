@@ -14,7 +14,7 @@ import {
   IFlightUpdate,
   mapFlightToRequest,
 } from '../../../../domain/model/flight.model';
-import { ModalComponent } from 'shared';
+import { AdminHeaderComponent, ModalComponent } from 'shared';
 import { CreateFlightComponent } from '../../forms/create-flight/create-flight.component';
 import { UpdateFlightComponent } from '../../forms/update-flight/update-flight.component';
 
@@ -26,6 +26,7 @@ import { UpdateFlightComponent } from '../../forms/update-flight/update-flight.c
     ModalComponent,
     CreateFlightComponent,
     UpdateFlightComponent,
+    AdminHeaderComponent
   ],
   templateUrl: './table-flight.component.html',
   styleUrl: './table-flight.component.scss',
@@ -35,6 +36,8 @@ export class TableFlightComponent {
     'admin/form-svgrepo-com.svg#icon-delete',
     'admin/form-svgrepo-com.svg#icon-update',
   ];
+  public columns: string[] = ["#Vuelo", "Modelo", "Ruta", "Fecha de Salida", "Fecha de LLegada", "Estado","Precio", "BF","BB","EF","EC","EB"];
+
   public dataFlight = input.required<IFlight[]>();
   public deleteClient = output<string>();
   public flightRequests: IFlightInfo[] = [];

@@ -36,7 +36,7 @@ export interface IFlight {
     routeId: string;
     departureTime: string;
     arrivalTime: string;
-    totalSites: number;
+    state: string;
     price: number;
     BF: number;
     BB: number;
@@ -71,7 +71,7 @@ export interface IFlight {
       routeId: flight.routeId,
       departureTime: flight.departureTime,
       arrivalTime: flight.arrivalTime,
-      totalSites: flight.seats,
+      state: flight.status,
       price: flight.economyBasicPrice, 
       BF:flight.totalPriceBusinessFullPrice,
       BB: flight.totalPriceBusinessBasicPrice,

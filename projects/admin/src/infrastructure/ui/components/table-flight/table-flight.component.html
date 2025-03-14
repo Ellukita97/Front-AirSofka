@@ -1,3 +1,5 @@
+
+<lib-admin-header title="Gestión de Vuelos"/>  
 <div class="card">
     <div class="card__header">
         <h2 class="card__title">Vuelos</h2>
@@ -11,7 +13,7 @@
         <thead>
             <tr>
                 @for (item of columnKeys; track $index) {
-                <th class="styled-table__header">{{item}}</th>
+                <th class="styled-table__header">{{columns[$index]}}</th>
                 }
             </tr>
         </thead>
