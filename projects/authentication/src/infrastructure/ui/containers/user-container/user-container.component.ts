@@ -6,6 +6,7 @@ import { UserDashboardComponent } from '../../components/user-dashboard/user-das
 import { CreateUserUseCase } from '../../../../application/users/create-user.useCase';
 import { AsyncPipe } from '@angular/common';
 import { SidebarComponent } from "shared";
+import { ToggleUserUseCase } from '../../../../application/users/toggle-user.useCase';
 
 @Component({
   selector: 'lib-users-container',
@@ -16,6 +17,7 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
 
   private readonly _getUseCase = inject(ListUsersUseCase);
   private readonly _createUseCase = inject(CreateUserUseCase);
+  private readonly _toggleUseCase = inject(ToggleUserUseCase);
   public users$: Observable<IUser[]>;
   public routesNav = [
     {
@@ -27,6 +29,7 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._getUseCase.initSubscriptions();
     this._createUseCase.initSubscriptions();
+    this._toggleUseCase.initSubscriptions();
     this._getUseCase.execute();
     this.users$ = this._getUseCase.users$();
   }
@@ -34,9 +37,14 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this._getUseCase.destroySubscriptions();
     this._createUseCase.destroySubscriptions();
+    this._toggleUseCase.destroySubscriptions();
   }
 
   handleCreateUser(user: IUser) {
     this._createUseCase.execute(user);
+  }
+
+  handleToggleUser(email: string): void { 
+    this._toggleUseCase.execute(email);
   }
 }
