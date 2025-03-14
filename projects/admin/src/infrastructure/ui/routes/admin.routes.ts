@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from '../layouts/admin-layout/admin-layout.component';
 import { ReservaContainerComponent } from '../container/reserva-container/reserva-container.component';
 import { RoutesContainerComponent } from '../container/routes-container/routes-container.component';
+import { ListFlightsComponent } from '../container/list-flights/list-flights.component';
+
 
 export const adminRoutes: Routes = [
   {
@@ -22,6 +24,10 @@ export const adminRoutes: Routes = [
       {
         path: 'routes',
         component: RoutesContainerComponent,
+      },
+      {
+        path: 'flights',
+        component: ListFlightsComponent,
       },
       {
         path: '',

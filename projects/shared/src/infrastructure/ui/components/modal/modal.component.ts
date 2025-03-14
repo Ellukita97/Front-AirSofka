@@ -13,7 +13,7 @@ export class ModalComponent {
   title? = input<string>();
   confirmText = input<string>('Confirmar');
   cancelText = input<string>('Cancelar');
-  variant = input<'primary' | 'secondary'>();
+  variant = input<'primary' | 'secondary' | 'tertiary' | 'noText'>();
   onConfirm = output<void>();
   onCancel = output<void>();
 
@@ -21,14 +21,19 @@ export class ModalComponent {
 
   toggle() {
     this.visible = !this.visible;
+    this.visible = !this.visible;
   }
 
   confirm() {
     this.onConfirm.emit();
     this.toggle();
+    this.onConfirm.emit();
+    this.toggle();
   }
 
   cancel() {
+    this.onCancel.emit();
+    this.toggle();
     this.onCancel.emit();
     this.toggle();
   }

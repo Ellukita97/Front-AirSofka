@@ -1,8 +1,8 @@
-<lib-button-modal
-  [text]="actionText()"
-  (onClick)="toggle()"
-  [variant]="variant()"
-></lib-button-modal>
+<lib-button-modal [text]="actionText()" (onClick)="toggle()" [variant]="variant()">
+  <ng-content select="[buttonTable]">
+
+  </ng-content>
+</lib-button-modal>
 
 <dialog class="modal" [ngClass]="{ 'modal--visible': visible }">
   <div class="modal__content" [hidden]="!visible">
@@ -13,7 +13,10 @@
     </div>
 
     <div class="modal__body">
-      <ng-content></ng-content>
+      <ng-content ></ng-content>
+      <ng-content select="[form-body]">
+
+      </ng-content>
     </div>
 
     <div class="modal__footer">
