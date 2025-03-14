@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { IRoute } from '../../../../domain/model/route.model';
 import { ModalComponent } from 'shared';
 
@@ -9,20 +9,26 @@ import { ModalComponent } from 'shared';
   styleUrls: ['./routes-card.component.scss'],
 })
 export class RoutesCardComponent {
-  @Input() routes: IRoute[] = [];
+  @Input() routes: IRoute[] = []; // Rutas que se muestran en las cards
   selectedRoute: IRoute | null = null; // Ruta seleccionada para editar/eliminar
   modalType: 'edit' | 'delete' | null = null; // Tipo de modal abierto
 
+  @ViewChild(ModalComponent) modal!: ModalComponent; // Referencia al modal
+
   // Abre el modal de edición
   openEditModal(route: IRoute) {
+    console.log('Abriendo modal de edición para:', route); // Verifica si se ejecuta
     this.selectedRoute = route;
     this.modalType = 'edit';
+    this.modal.toggle(); // Abre el modal
   }
 
   // Abre el modal de eliminación
   openDeleteModal(route: IRoute) {
+    console.log('Abriendo modal de eliminación para:', route); // Verifica si se ejecuta
     this.selectedRoute = route;
     this.modalType = 'delete';
+    this.modal.toggle(); // Abre el modal
   }
 
   // Cierra el modal

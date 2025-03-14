@@ -1,5 +1,5 @@
 export interface IRoute {
-  id: string;
+  routeId: string;
   origin: string;
   destination: string;
   duration: number;

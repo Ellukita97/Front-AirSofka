@@ -28,7 +28,7 @@ export class DeleteRouteUseCase {
           tap(() => {
             const updatedRoutes = this._state.routeStateIndex.routes
               .snapshot()
-              .filter(route => route.id !== routeId);
+              .filter((route) => route.routeId !== routeId);
             this._state.routeStateIndex.routes.set(updatedRoutes);
           })
         )

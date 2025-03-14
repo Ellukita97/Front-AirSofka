@@ -25,6 +25,12 @@ export class GetRouteUseCase {
   //#region Public Methods
   initSubscriptions(): void {
     this.subscriptions = new Subscription();
+
+    this.subscriptions.add(
+      this.allRoutes$().subscribe((routes) => {
+        console.log('All Routes:', routes);
+      })
+    );
   }
 
   destroySubscriptions(): void {
@@ -43,7 +49,7 @@ export class GetRouteUseCase {
   selectedRoute(routeId: string): void {
     const currentRoute = this._state.routeStateIndex.routes
       .snapshot()
-      .find((route) => route.id === routeId);
+      .find((route) => route.routeId === routeId);
     this._state.routeStateIndex.currentRoute.set(currentRoute);
   }
   //#endregion
