@@ -10,6 +10,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
   styleUrl: './create-flight.component.scss',
 })
 export class CreateFlightComponent {
+  
   @Output() createFlight = new EventEmitter<IFlightRequest>();
   flightRequest: any = {
     flightNumber: 'ABC123',

@@ -46,13 +46,13 @@
                         </lib-modal>
                         <div (click)="sendData(item.flightNumber)">
                             <lib-modal class="actions__button--remove" [title]="'Actualizar Vuelo'" [actionText]="''"
-                                (onConfirm)="confirmUpdate()" (onCancel)="cancel()" [variant]="'noText'">
+                                (onConfirm)="cancel()" (onCancel)="confirmUpdate()" [variant]="'noText'">
                                 <svg buttonTable width="30px" height="30px" class="icon"
                                     preserveAspectRatio="xMidYMid meet">
                                     <use [attr.xlink:href]="images[1]"></use>
                                 </svg>
                                 <lib-update-flight  #updateFlight  form-body  [flightFound]="currentFlight()"
-                                    (updateFlight)="updateFlight($event)">
+                                    (updateFlight)="onUpdateFlight($event)">
                                 </lib-update-flight>
                             </lib-modal>
                         </div>

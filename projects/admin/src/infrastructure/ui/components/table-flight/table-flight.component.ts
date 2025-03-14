@@ -51,7 +51,7 @@ export class TableFlightComponent {
   @ViewChild(UpdateFlightComponent)
   updateFlightComponent!: UpdateFlightComponent;
 
-  public sent: boolean = false;
+  public sent: boolean = true;
 
   public createOrderData = output<IFlightRequest>();
 
@@ -73,15 +73,15 @@ export class TableFlightComponent {
   createFlights(flight: IFlightRequest) {
     this.createdFlight.emit(flight);
   }
-  updateFlight(flight: IFlightUpdate) {
+  onUpdateFlight(flight: IFlightUpdate) {
     this.updatedFlight.emit(flight);
   }
+
   sendData(flightNumber: string) {
-    if (!this.sent) {
-      this.flightCurrent = this.findFlight(flightNumber);
-      this.onSelectOrder.emit(this.flightCurrent.flightId);
-      console.log(this.currentFlight());
-      this.sent = true;
+    if (this.sent) {
+    this.flightCurrent = this.findFlight(flightNumber);
+    this.onSelectOrder.emit(this.flightCurrent.flightId);
+    console.log(this.currentFlight());
     }
   }
   confirma() {
@@ -95,6 +95,7 @@ export class TableFlightComponent {
     }
   }
   cancel() {
+    this.sent = false;
     console.log('cancel');
   }
 
