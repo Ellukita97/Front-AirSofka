@@ -5,7 +5,7 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   selector: 'lib-control-route',
   imports: [ReactiveFormsModule],
   templateUrl: './control-route.component.html',
-  styleUrl: './control-route.component.css'
+  styleUrl: './control-route.component.scss'
 })
 export class ControlRouteComponent {
   public flightsList = [

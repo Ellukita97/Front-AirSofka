@@ -1,3 +1,5 @@
+
+
 .route-form {
     display: flex;
     flex-direction: column;
@@ -7,7 +9,7 @@
     background: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin: 0 auto;
+  
     &__group {
       display: flex;
       flex-direction: column;
@@ -20,12 +22,14 @@
       color: #333;
     }
   
-    &__input {
-        padding: 1.2rem;
+    &__select {
+      padding: 1.2rem;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 1.4rem;
       transition: border-color 0.3s, box-shadow 0.3s;
+      background: #fff;
+      cursor: pointer;
   
       &:focus {
         border-color: #007bff;
