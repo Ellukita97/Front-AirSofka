@@ -2,7 +2,7 @@
 <div class="card">
     <div class="card__header">
         <h2 class="card__title">Vuelos</h2>
-
+sdf
         <lib-modal class="card__button-add" [title]="'Formulario para crear Vuelo'" [actionText]="'Agregar Vuelo'"
             (onConfirm)="confirma()" (onCancel)="cancel()" [variant]="'tertiary'">
             <lib-create-flight #createFlight (createFlight)="createFlights($event)"
@@ -24,11 +24,12 @@
                 <td class="styled-table__cell">
                     @if (key === 'price' || key === 'BF' || key === 'BB' || key === 'EF' || key === 'EB' || key ===
                     'EC') {
+
                     {{ item[key] | currency }}
                     }
                     @else {
                     @if (key === 'departureTime' || key=== 'arrivalTime') {
-                    {{ item[key] | date: 'medium' }}
+                    {{ item[key] |fixDate| date: 'medium' }}
                     }
                     @else{
                     @if (key === 'routeId') {
@@ -52,13 +53,15 @@
                         </lib-modal>
                         <div (click)="sendData(item.flightNumber)">
                             <lib-modal class="actions__button--remove" [title]="'Actualizar Vuelo'" [actionText]="''"
-                                (onConfirm)="cancel()" (onCancel)="confirmUpdate()" [variant]="'noText'">
+                                (onConfirm)="cancel()" (onCancel)="confirmUpdate()" [variant]="'noText'"  >
                                 <svg buttonTable width="30px" height="30px" class="icon"
                                     preserveAspectRatio="xMidYMid meet">
                                     <use [attr.xlink:href]="images[1]"></use>
                                 </svg>
                                 <lib-update-flight #updateFlight form-body [flightFound]="currentFlight()"
-                                    (updateFlight)="onUpdateFlight($event)">
+                                    (updateFlight)="onUpdateFlight($event)"
+                                    [routes]="dataRoute()"
+                                    >
                                 </lib-update-flight>
                             </lib-modal>
                         </div>

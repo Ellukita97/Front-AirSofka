@@ -12,14 +12,17 @@ import { BaseFormComponent } from 'shared';
 import { IFlight, IFlightUpdate } from '../../../../domain/model/flight.model';
 import { CommonModule } from '@angular/common';
 import { ControlRouteComponent } from '../control-route/control-route.component';
+import { IRoute } from '../../../../domain/model/route.model';
 
 @Component({
   selector: 'lib-update-flight',
-  imports: [BaseFormComponent, ReactiveFormsModule, CommonModule, ControlRouteComponent],
+  imports: [ReactiveFormsModule, CommonModule, ControlRouteComponent],
   templateUrl: './update-flight.component.html',
   styleUrl: './update-flight.component.scss',
 })
 export class UpdateFlightComponent implements OnChanges {
+  @Input() routes: IRoute[];
+
   @Input() flightFound: IFlight;
   @Output() updateFlight = new EventEmitter<IFlightUpdate>();
 
@@ -42,29 +45,34 @@ export class UpdateFlightComponent implements OnChanges {
       }
     }
   }
-  
 
   private patchFormValues() {
     if (!this.flightFound) return;
-  
+
     // Obtener valores actuales del formulario
     const currentValues = this.formGroup.getRawValue();
-  
+
     // Verificar si los valores son realmente diferentes antes de sobrescribir
     if (
       currentValues.flightNumber === this.flightFound.flightNumber &&
       currentValues.routeId === this.flightFound.routeId &&
       currentValues.flightModel === this.flightFound.flightModel &&
       currentValues.price === this.flightFound.economyBasicPrice &&
-      currentValues.departureTime === this.formatDateForInput(this.flightFound.departureTime) &&
-      currentValues.arrivalTime === this.formatDateForInput(this.flightFound.arrivalTime)
+      currentValues.departureTime ===
+        this.formatDateForInput(this.flightFound.departureTime) &&
+      currentValues.arrivalTime ===
+        this.formatDateForInput(this.flightFound.arrivalTime)
     ) {
       return; // No hay cambios reales, evitamos sobrescribir
     }
-  
-    const formattedDepartureTime = this.formatDateForInput(this.flightFound.departureTime);
-    const formattedArrivalTime = this.formatDateForInput(this.flightFound.arrivalTime);
-  
+
+    const formattedDepartureTime = this.formatDateForInput(
+      this.flightFound.departureTime
+    );
+    const formattedArrivalTime = this.formatDateForInput(
+      this.flightFound.arrivalTime
+    );
+
     this.formGroup.patchValue(
       {
         aggregateId: this.flightFound.flightId,
@@ -77,10 +85,10 @@ export class UpdateFlightComponent implements OnChanges {
       },
       { emitEvent: false }
     );
-  
+
     this.formGroup.markAsPristine();
   }
-  
+
   submit() {
     if (this.formGroup.valid) {
       console.log(

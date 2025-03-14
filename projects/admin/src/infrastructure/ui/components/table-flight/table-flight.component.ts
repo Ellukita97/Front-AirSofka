@@ -19,6 +19,7 @@ import { CreateFlightComponent } from '../../forms/create-flight/create-flight.c
 import { UpdateFlightComponent } from '../../forms/update-flight/update-flight.component';
 import { IRoute } from '../../../../domain/model/route.model';
 import { RouteIdFormatPipe } from '../../pipes/routeId.pipe';
+import { FixDatePipe } from '../../pipes/fixDate.pipe';
 
 @Component({
   selector: 'lib-table-flight',
@@ -29,7 +30,8 @@ import { RouteIdFormatPipe } from '../../pipes/routeId.pipe';
     CreateFlightComponent,
     UpdateFlightComponent,
     AdminHeaderComponent,
-    RouteIdFormatPipe
+    RouteIdFormatPipe,
+    FixDatePipe
   ],
   templateUrl: './table-flight.component.html',
   styleUrl: './table-flight.component.scss',
@@ -39,7 +41,20 @@ export class TableFlightComponent {
     'admin/form-svgrepo-com.svg#icon-delete',
     'admin/form-svgrepo-com.svg#icon-update',
   ];
-  public columns: string[] = ["#Vuelo", "Modelo", "Ruta", "Fecha de Salida", "Fecha de LLegada", "Estado","Precio", "BF","BB","EF","EC","EB"];
+  public columns: string[] = [
+    '#Vuelo',
+    'Modelo',
+    'Ruta',
+    'Fecha de Salida',
+    'Fecha de LLegada',
+    'Estado',
+    'Precio',
+    'BF',
+    'BB',
+    'EF',
+    'EC',
+    'EB',
+  ];
 
   public dataFlight = input.required<IFlight[]>();
   public dataRoute = input<IRoute[]>();
@@ -52,7 +67,6 @@ export class TableFlightComponent {
   @Output() removedFlight = new EventEmitter<string>();
   @Output() createdFlight = new EventEmitter<IFlightRequest>();
   @Output() updatedFlight = new EventEmitter<IFlightUpdate>();
-  
 
   @ViewChild(CreateFlightComponent)
   createFlightComponent!: CreateFlightComponent;
@@ -60,7 +74,6 @@ export class TableFlightComponent {
   updateFlightComponent!: UpdateFlightComponent;
 
   public sent: boolean = true;
-
   public createOrderData = output<IFlightRequest>();
 
   get columnKeys(): string[] {
@@ -87,9 +100,9 @@ export class TableFlightComponent {
 
   sendData(flightNumber: string) {
     if (this.sent) {
-    this.flightCurrent = this.findFlight(flightNumber);
-    this.onSelectOrder.emit(this.flightCurrent.flightId);
-    console.log(this.currentFlight());
+      this.flightCurrent = this.findFlight(flightNumber);
+      this.onSelectOrder.emit(this.flightCurrent.flightId);
+      console.log(this.currentFlight());
     }
   }
   confirma() {
