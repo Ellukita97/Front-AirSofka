@@ -2,6 +2,7 @@
     @if(flightRequest){
     <lib-base-form [model]="flightRequest" [labelsMap]="customLabels" [formGroup]="formGroup"></lib-base-form>
     }
+    <lib-control-route [formGroup]="formGroup"></lib-control-route>
     <div class="order-form__group">
         <label for="departureTime" class="order-form__label">Hora de Salida:</label>
         <input id="departureTime" type="datetime-local" formControlName="departureTime" class="order-form__input" />

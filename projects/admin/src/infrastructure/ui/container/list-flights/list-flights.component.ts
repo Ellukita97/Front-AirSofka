@@ -46,16 +46,27 @@ export class ListFlightsComponent {
   createFlights(flight: IFlightRequest) {
     this.__useCaseAddFlight.execute(flight);
     console.log(flight);
+    this.refreshFlights();
   }
   updateFlight(flight: IFlightUpdate) {
-console.log(flight);
-
     this.__useCaseUpdateFlight.execute(flight);
+    this.refreshFlights();
   }
   selectFlight(id: string) {
     this.__useCaseUpdateFlight.selectFlight$(id);
+    
   }
-
+  private loadFlights() {
+    this.__useCaseList.execute();
+    this.flights$ = this.__useCaseList.flights$();
+    this.currentFlight$ = this.__useCaseUpdateFlight.currentFlight$();
+  }
+  private refreshFlights() {
+    setTimeout(() => {
+      this.loadFlights(); 
+    }, 500); 
+  }
+  
 
 
 }

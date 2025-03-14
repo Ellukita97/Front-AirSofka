@@ -11,10 +11,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BaseFormComponent } from 'shared';
 import { IFlight, IFlightUpdate } from '../../../../domain/model/flight.model';
 import { CommonModule } from '@angular/common';
+import { ControlRouteComponent } from '../control-route/control-route.component';
 
 @Component({
   selector: 'lib-update-flight',
-  imports: [BaseFormComponent, ReactiveFormsModule, CommonModule],
+  imports: [BaseFormComponent, ReactiveFormsModule, CommonModule, ControlRouteComponent],
   templateUrl: './update-flight.component.html',
   styleUrl: './update-flight.component.scss',
 })

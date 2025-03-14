@@ -9,16 +9,14 @@
         <input id="flightNumber" formControlName="flightNumber" />
     </div>
 
-    <div>
-        <label for="routeId">Ruta</label>
-        <input id="routeId" formControlName="routeId" />
-    </div>
+
 
     <div>
         <label for="flightModel">Modelo de Avión</label>
         <input id="flightModel" formControlName="flightModel" />
     </div>
 
+    <lib-control-route [formGroup]="formGroup"></lib-control-route>
     <div>
         <label for="price">Precio</label>
         <input id="price" type="number" formControlName="price" />

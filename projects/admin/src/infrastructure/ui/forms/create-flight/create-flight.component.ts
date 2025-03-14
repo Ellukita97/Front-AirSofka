@@ -2,10 +2,11 @@ import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { BaseFormComponent } from 'shared';
 import { IFlightRequest } from '../../../../domain/model/flight.model';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ControlRouteComponent } from '../control-route/control-route.component';
 
 @Component({
   selector: 'lib-create-flight',
-  imports: [BaseFormComponent, ReactiveFormsModule],
+  imports: [BaseFormComponent, ReactiveFormsModule, ControlRouteComponent],
   templateUrl: './create-flight.component.html',
   styleUrl: './create-flight.component.scss',
 })
@@ -15,13 +16,13 @@ export class CreateFlightComponent {
   flightRequest: any = {
     flightNumber: 'ABC123',
     flightModel: 'Boeing 747',
-    routeId: 'R123',
+  
     price: 500,
   };
   customLabels: Record<string, string> = {
     flightNumber: 'Número de Vuelo',
     flightModel: 'Modelo de Avión',
-    routeId: 'Ruta',
+    
     price: 'Precio',
   };
   private formBuilder = inject(FormBuilder);
