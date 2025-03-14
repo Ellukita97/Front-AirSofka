@@ -8,56 +8,16 @@
   <div class="card__actions">
     <button
       class="card__button card__button--edit"
-      (click)="openEditModal(route)"
+      (click)="editRouteHandler(route)"
     >
       Editar
     </button>
     <button
       class="card__button card__button--delete"
-      (click)="openDeleteModal(route)"
+      (click)="deleteRouteHandler(route)"
     >
       Eliminar
     </button>
   </div>
 </div>
-}
-
-<!-- Modal para Editar -->
-@if (selectedRoute && modalType === 'edit') {
-<lib-modal
-  [title]="'Editar Ruta'"
-  [confirmText]="'Guardar'"
-  [cancelText]="'Cancelar'"
-  (onConfirm)="editRoute()"
-  (onCancel)="closeModal()"
->
-  <div class="modal__content">
-    <p>
-      ¿Estás seguro de que deseas editar la ruta de
-      <strong>{{ selectedRoute.origin }}</strong> a
-      <strong>{{ selectedRoute.destination }}</strong
-      >?
-    </p>
-  </div>
-</lib-modal>
-}
-
-<!-- Modal para Eliminar -->
-@if (selectedRoute && modalType === 'delete') {
-<lib-modal
-  [title]="'Eliminar Ruta'"
-  [confirmText]="'Eliminar'"
-  [cancelText]="'Cancelar'"
-  (onConfirm)="deleteRoute()"
-  (onCancel)="closeModal()"
->
-  <div class="modal__content">
-    <p>
-      ¿Estás seguro de que deseas eliminar la ruta de
-      <strong>{{ selectedRoute.origin }}</strong> a
-      <strong>{{ selectedRoute.destination }}</strong
-      >?
-    </p>
-  </div>
-</lib-modal>
 }

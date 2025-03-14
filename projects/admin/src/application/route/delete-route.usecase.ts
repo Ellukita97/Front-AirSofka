@@ -6,14 +6,16 @@ import { StateIndex } from '../../domain/state';
 @Injectable({
   providedIn: 'root',
 })
+@Injectable({
+  providedIn: 'root',
+})
 export class DeleteRouteUseCase {
   private readonly _service = inject(DeleteRouteService);
   private readonly _state = inject(StateIndex);
   private subscriptions: Subscription;
 
-  //#region Public Methods
-  initSubscriptions(): void {
-    this.subscriptions = new Subscription();
+  constructor() {
+    this.subscriptions = new Subscription(); // Inicializa aquí
   }
 
   destroySubscriptions(): void {
@@ -35,5 +37,4 @@ export class DeleteRouteUseCase {
         .subscribe()
     );
   }
-  //#endregion
 }

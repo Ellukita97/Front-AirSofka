@@ -1,2 +1,4 @@
-<!-- routes-container.component.html -->
-<lib-routes-card [routes]="routes$ | async"></lib-routes-card>
+<lib-routes-card
+  [routes]="routes$ | async"
+  (deleteRoute)="onDeleteRoute($event)"
+></lib-routes-card>

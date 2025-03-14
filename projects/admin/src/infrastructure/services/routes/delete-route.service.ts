@@ -12,7 +12,7 @@ export class DeleteRouteService {
 
   delete(routeId: string): Observable<void> {
     const headers = this.getHeaders();
-    const body = { routeId };
+    const body = { aggregateId: routeId }; // Cuerpo con aggregateId
     return this.http.request<void>('delete', this.apiUrl, { headers, body });
   }
 
