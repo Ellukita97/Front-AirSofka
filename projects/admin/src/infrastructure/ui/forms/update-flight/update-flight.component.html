@@ -14,7 +14,7 @@
         <input id="flightModel" formControlName="flightModel" class="flight-form__input" />
     </div>
 
-    <lib-control-route [formGroup]="formGroup"></lib-control-route>
+    <lib-control-route [formGroup]="formGroup" [routes]="routes"></lib-control-route>
 
     <div class="flight-form__group">
         <label for="price" class="flight-form__label">Precio</label>
@@ -31,5 +31,5 @@
         <input id="arrivalTime" type="datetime-local" formControlName="arrivalTime" class="flight-form__input" />
     </div>
 
-    <button type="submit" class="flight-form__button">Enviar</button>
+    <button type="submit" class="flight-form__button">Actualizar</button>
 </form>

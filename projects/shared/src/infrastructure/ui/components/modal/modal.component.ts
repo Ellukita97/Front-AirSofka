@@ -21,6 +21,7 @@ export class ModalComponent {
 
   toggle() {
     this.visible = !this.visible;
+    // this.visible = !this.visible;
   }
 
   confirm() {
