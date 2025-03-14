@@ -4,6 +4,8 @@
     (removedFlight)="removeFlight($event)"
     (createdFlight)="createFlights($event)"
     (updatedFlight)="updateFlight($event)"
+    [currentFlight]="currentFlight$ | async"
+    (onSelectOrder)="selectFlight($event)"
     >
     
 </lib-table-flight>

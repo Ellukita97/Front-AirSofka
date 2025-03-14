@@ -45,18 +45,15 @@
                             </svg>
                         </lib-modal>
                         <div (click)="sendData(item.flightNumber)">
-                            <lib-modal class="actions__button--remove" [title]="'¿Estas seguro que quieres emitir?'"
-                                [actionText]="''" (onConfirm)="confirmUpdate()" (onCancel)="cancel()"
-                                [variant]="'noText'">
+                            <lib-modal class="actions__button--remove" [title]="'Actualizar Vuelo'" [actionText]="''"
+                                (onConfirm)="confirmUpdate()" (onCancel)="cancel()" [variant]="'noText'">
                                 <svg buttonTable width="30px" height="30px" class="icon"
                                     preserveAspectRatio="xMidYMid meet">
                                     <use [attr.xlink:href]="images[1]"></use>
                                 </svg>
-
-                                <lib-update-flight form-body
-                                    [flightFound]="flightCurrent" (updateFlight)="updateFlight($event)"></lib-update-flight>
-
-
+                                <lib-update-flight  #updateFlight  form-body  [flightFound]="currentFlight()"
+                                    (updateFlight)="updateFlight($event)">
+                                </lib-update-flight>
                             </lib-modal>
                         </div>
 

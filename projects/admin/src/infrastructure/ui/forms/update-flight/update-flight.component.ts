@@ -9,33 +9,22 @@ import {
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BaseFormComponent } from 'shared';
-import {
-  IFlight,
-  IFlightUpdate,
-} from '../../../../domain/model/flight.model';
+import { IFlight, IFlightUpdate } from '../../../../domain/model/flight.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'lib-update-flight',
-  imports: [BaseFormComponent, ReactiveFormsModule],
+  imports: [BaseFormComponent, ReactiveFormsModule, CommonModule],
   templateUrl: './update-flight.component.html',
   styleUrl: './update-flight.component.scss',
 })
 export class UpdateFlightComponent implements OnChanges {
-  @Input() flightFound: IFlight | null = null;
+  @Input() flightFound: IFlight;
   @Output() updateFlight = new EventEmitter<IFlightUpdate>();
-  flightRequest: any | null = null;
-
-  customLabels: Record<string, string> = {
-    aggregateId: 'ID Vuelo',
-    flightNumber: 'Número de Vuelo',
-    flightModel: 'Modelo de Avión',
-    routeId: 'Ruta',
-    price: 'Precio',
-  };
 
   private formBuilder = inject(FormBuilder);
   public formGroup = this.formBuilder.group({
-    aggregateId: [{ value: 0, disabled: true }, Validators.required],
+    aggregateId: [{ value: '', disabled: true }, Validators.required],
     flightNumber: ['', Validators.required],
     routeId: ['', Validators.required],
     flightModel: ['', Validators.required],
@@ -46,37 +35,36 @@ export class UpdateFlightComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes['flightFound'] && this.flightFound) {
-      this.flightRequest = {
-        aggregateId: this.flightFound.flightId,
-        flightNumber: this.flightFound.flightNumber,
-        routeId: this.flightFound.routeId,
-        flightModel: this.flightFound.flightModel,
-        price: this.flightFound.economyBasicPrice,
-      };
-      this.formGroup.patchValue({
-        ...this.flightRequest,
-        departureTime: this.flightFound.departureTime,
-        arrivalTime: this.flightFound.arrivalTime,
-      });
+      this.patchFormValues();
+      console.log(this.formGroup.value);
+      
     }
+  }
+
+  private patchFormValues() {
+    if (!this.flightFound) return;
+
+    this.formGroup.patchValue({
+      aggregateId: this.flightFound.flightId,
+      flightNumber: this.flightFound.flightNumber,
+      routeId: this.flightFound.routeId,
+      flightModel: this.flightFound.flightModel,
+      price: this.flightFound.economyBasicPrice,
+      departureTime: this.flightFound.departureTime,
+      arrivalTime: this.flightFound.arrivalTime,
+    }, { emitEvent: false });
+
+    // Marca el formulario como "pristine" sin reiniciarlo
+    this.formGroup.markAsPristine();  
   }
 
   submit() {
     if (this.formGroup.valid) {
-      const flightupdate : IFlightUpdate={
-        aggregateId: this.flightFound.flightId,
-        flightNumber: this.formGroup.value.flightNumber,
-        routeId: this.formGroup.value.routeId,
-        flightModel: this.formGroup.value.flightModel,
-        price: this.formGroup.value.price,
-        departureTime: this.formGroup.value.departureTime,
-        arrivalTime: this.formGroup.value.arrivalTime,
-      };
-      console.log('✅ Formulario enviado:', flightupdate);
-      this.updateFlight.emit(flightupdate);
-      this.formGroup.reset();
+      console.log('✅ Formulario enviado:', this.formGroup.value as unknown as IFlightUpdate);
+      this.updateFlight.emit(this.formGroup.getRawValue() as IFlightUpdate);
+      this.formGroup.markAsPristine();
     } else {
-      console.log('❌ Formulario inválido:', this.formGroup.value);
+      console.log('❌ Formulario inválido:', this.formGroup.getRawValue());
     }
   }
 }

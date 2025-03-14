@@ -39,15 +39,19 @@ export class TableFlightComponent {
   public deleteClient = output<string>();
   public flightRequests: IFlightInfo[] = [];
   public flightCurrent: IFlight;
+  public currentFlight = input<IFlight>();
+  public onSelectOrder = output<string>();
 
   @Output() removedFlight = new EventEmitter<string>();
   @Output() createdFlight = new EventEmitter<IFlightRequest>();
-  @Output() updatedFlight = new EventEmitter<IFlightRequest>();
+  @Output() updatedFlight = new EventEmitter<IFlightUpdate>();
 
   @ViewChild(CreateFlightComponent)
   createFlightComponent!: CreateFlightComponent;
   @ViewChild(UpdateFlightComponent)
   updateFlightComponent!: UpdateFlightComponent;
+
+  public sent: boolean = false;
 
   public createOrderData = output<IFlightRequest>();
 
@@ -62,7 +66,6 @@ export class TableFlightComponent {
   mapFlightsToRequests(flights: IFlight[]): IFlightInfo[] {
     return flights.map(mapFlightToRequest);
   }
-
   removeFlight(flightId: string) {
     const flight = this.findFlight(flightId);
     this.removedFlight.emit(flight.flightId);
@@ -74,10 +77,13 @@ export class TableFlightComponent {
     this.updatedFlight.emit(flight);
   }
   sendData(flightNumber: string) {
-    this.flightCurrent = this.findFlight(flightNumber);
-    console.log(this.flightCurrent);
+    if (!this.sent) {
+      this.flightCurrent = this.findFlight(flightNumber);
+      this.onSelectOrder.emit(this.flightCurrent.flightId);
+      console.log(this.currentFlight());
+      this.sent = true;
+    }
   }
-
   confirma() {
     if (this.createFlightComponent) {
       this.createFlightComponent.submit();
@@ -88,14 +94,11 @@ export class TableFlightComponent {
       this.updateFlightComponent.submit();
     }
   }
-
   cancel() {
-    console.log('Confirmar');
+    console.log('cancel');
   }
 
   findFlight(flightNumber: string): IFlight | null {
-    console.log(flightNumber);
-
     return this.dataFlight().find(
       (flight) => flight.flightNumber === flightNumber
     );

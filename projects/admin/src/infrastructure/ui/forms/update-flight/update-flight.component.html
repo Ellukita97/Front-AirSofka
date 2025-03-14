@@ -1,21 +1,38 @@
-@if (flightRequest) {
-    <form [formGroup]="formGroup" (ngSubmit)="submit()">
-      <lib-base-form
-        [model]="flightRequest"
-        [labelsMap]="customLabels"
-        [formGroup]="formGroup"
-      >
-      </lib-base-form>
-  
-      <div class="order-form__group">
-        <label for="departureTime" class="order-form__label">Hora de Salida:</label>
-        <input id="departureTime" type="datetime-local" formControlName="departureTime" class="order-form__input" />
-      </div>
-  
-      <div class="order-form__group">
-        <label for="arrivalTime" class="order-form__label">Hora de Llegada:</label>
-        <input id="arrivalTime" type="datetime-local" formControlName="arrivalTime" class="order-form__input" />
-      </div>
-    </form>
-  }
-  
+<form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <div>
+        <label for="aggregateId">ID</label>
+        <input id="aggregateId" formControlName="aggregateId" />
+    </div>
+
+    <div>
+        <label for="flightNumber">Número de Vuelo</label>
+        <input id="flightNumber" formControlName="flightNumber" />
+    </div>
+
+    <div>
+        <label for="routeId">Ruta</label>
+        <input id="routeId" formControlName="routeId" />
+    </div>
+
+    <div>
+        <label for="flightModel">Modelo de Avión</label>
+        <input id="flightModel" formControlName="flightModel" />
+    </div>
+
+    <div>
+        <label for="price">Precio</label>
+        <input id="price" type="number" formControlName="price" />
+    </div>
+
+    <div>
+        <label for="departureTime">Hora de Salida</label>
+        <input id="departureTime" type="datetime-local" formControlName="departureTime" />
+    </div>
+
+    <div>
+        <label for="arrivalTime">Hora de Llegada</label>
+        <input id="arrivalTime" type="datetime-local" formControlName="arrivalTime" />
+    </div>
+
+    <button type="submit">Enviar</button>
+</form>
