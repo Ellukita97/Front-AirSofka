@@ -1,0 +1,9 @@
+
+<div [formGroup]="formGroup" class="route-form__group">
+    <label for="routeId" class="route-form__label">Ruta</label>
+    <select (change)="onRouteChange($event)" formControlName="routeId" id="routeId" class="route-form__select">
+        @for (item of flightsList; track $index) {
+        <option value="{{item.routeId}}">{{item.origin}} ⟹ {{item.destination}}</option>
+        }
+    </select>
+  </div>
