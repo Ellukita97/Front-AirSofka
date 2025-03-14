@@ -11,4 +11,9 @@ export const routes: Routes = [
     component: BodyLayoutComponent,
     loadChildren: () => import('availability').then((m) => m.routes),     
   },
+  {
+    path: 'users',
+    component: BodyLayoutComponent,
+    loadChildren: () => import('authentication').then((m) => m.authRoutes),
+  }
 ];
