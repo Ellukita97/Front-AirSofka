@@ -3,8 +3,5 @@
   "dest": "../../dist/availability",
   "lib": {
     "entryFile": "src/public-api.ts"
-  },
-  "allowedNonPeerDependencies": [
-    "availability"
-  ]
+  }
 }
