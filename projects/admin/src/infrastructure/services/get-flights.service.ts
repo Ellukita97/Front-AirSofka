@@ -12,7 +12,7 @@ export class GetFlightsService {
   private http = inject(HttpClient)
 
   getFlights(): Observable<any[]>{
-    return this.http.get<any>("http://localhost:8080/api/flight").pipe(
+    return this.http.get<any>(environment.apiUrl+'/flight').pipe(
       map((response)=> response))
   }
 

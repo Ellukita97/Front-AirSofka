@@ -41,8 +41,9 @@ export interface IFlight {
     BF: number;
     BB: number;
     EF: number;
-    EB: number;
     EC: number;
+    EB: number;
+
   }
 
   export interface IFlightRequest {
@@ -75,8 +76,8 @@ export interface IFlight {
       BF:flight.totalPriceBusinessFullPrice,
       BB: flight.totalPriceBusinessBasicPrice,
       EF: flight.totalPriceEconomyFullPrice,
-      EB: flight.totalPriceEconomyBasicPrice,
       EC: flight.totalPriceEconomyClassicPrice,
+      EB: flight.totalPriceEconomyBasicPrice,
     };
   }
 

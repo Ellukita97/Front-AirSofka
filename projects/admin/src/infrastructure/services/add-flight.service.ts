@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import {  IFlightRequest } from '../../domain/model/flight.model';
 import { catchError, Observable, throwError } from 'rxjs';
+import { environment } from 'shared';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class AddFlightService {
   private http = inject(HttpClient);
 
-  private apiUrl = 'http://localhost:8080/api/flight';
+  private apiUrl = environment.apiUrl+'/flight';
 
   addFlight(flight: IFlightRequest): Observable<any> {
     return this.http
