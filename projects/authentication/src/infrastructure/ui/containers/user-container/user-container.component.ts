@@ -5,10 +5,11 @@ import { ListUsersUseCase } from '../../../../application/users/list-user.useCas
 import { UserDashboardComponent } from '../../components/user-dashboard/user-dashboard.component';
 import { CreateUserUseCase } from '../../../../application/users/create-user.useCase';
 import { AsyncPipe } from '@angular/common';
+import { SidebarComponent } from "shared";
 
 @Component({
   selector: 'lib-users-container',
-  imports: [UserDashboardComponent, AsyncPipe],
+  imports: [UserDashboardComponent, AsyncPipe, SidebarComponent],
   templateUrl: './user-container.component.html',
 })
 export class UsersContainerComponent implements OnInit, OnDestroy {
@@ -16,6 +17,12 @@ export class UsersContainerComponent implements OnInit, OnDestroy {
   private readonly _getUseCase = inject(ListUsersUseCase);
   private readonly _createUseCase = inject(CreateUserUseCase);
   public users$: Observable<IUser[]>;
+  public routesNav = [
+    {
+      title:"inicio",
+      path:"/"
+    }
+  ]
 
   ngOnInit(): void {
     this._getUseCase.initSubscriptions();
