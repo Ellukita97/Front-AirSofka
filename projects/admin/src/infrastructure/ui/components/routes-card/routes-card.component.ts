@@ -3,6 +3,8 @@ import { IRoute } from '../../../../domain/model/route.model';
 
 @Component({
   selector: 'lib-routes-card',
+  standalone: true,
+  imports: [],
   templateUrl: './routes-card.component.html',
   styleUrls: ['./routes-card.component.scss'],
 })
