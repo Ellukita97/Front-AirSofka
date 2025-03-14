@@ -23,6 +23,11 @@ export class SidenavComponent {
     {
       title: 'Reservas',
       path: '/admin/booking'
+    },
+    {
+      title: 'Vuelos',
+      path: '/admin/flights'
+      
     }
   ]
 }
